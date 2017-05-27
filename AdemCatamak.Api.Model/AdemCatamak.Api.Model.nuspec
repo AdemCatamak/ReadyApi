@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<package>
+
+  <metadata>
+    <id>AdemCatamak.Api.Model</id>
+    <version>1.0.1.2</version>
+    <title>AdemCatamak.Api.Model</title>
+    <authors>Adem Catamak</authors>
+    <owners>Adem Catamak</owners>
+    <licenseUrl><![CDATA[https://bitbucket.org/ademcatamak/ademcatamak.api/commits/307f231c3ce9c6e1eb1df7618aa6ce09d5e4f5b5]]></licenseUrl>
+    <projectUrl>https://bitbucket.org/ademcatamak/ademcatamak.api/wiki/Home</projectUrl>
+    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Basic Api Requirements with Owin</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>AdemCatamak.Api.Model</tags>
+
+    <dependencies>
+      <dependency id="Autofac" version="4.6.0" />
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="bin\Release\AdemCatamak.Api.Model.dll" target="lib\net46"></file>
+  </files>
+</package>

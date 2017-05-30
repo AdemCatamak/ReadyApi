@@ -35,7 +35,7 @@
       <HintPath>..\packages\AdemCatamak.Api.Model.1.0.1.2\lib\net46\AdemCatamak.Api.Model.dll</HintPath>
     </Reference>
     <Reference Include="AdemCatamak.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AdemCatamak.DAL.1.0.0.23\lib\net46\AdemCatamak.DAL.dll</HintPath>
+      <HintPath>..\packages\AdemCatamak.DAL.1.0.1.1\lib\net46\AdemCatamak.DAL.dll</HintPath>
     </Reference>
     <Reference Include="AdemCatamak.Logger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AdemCatamak.Logger.1.0.1.5\lib\net46\AdemCatamak.Logger.dll</HintPath>

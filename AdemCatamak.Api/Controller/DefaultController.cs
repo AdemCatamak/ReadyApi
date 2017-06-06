@@ -16,5 +16,13 @@ namespace AdemCatamak.Api.Controller
             response.Headers.Location = new Uri(Request.RequestUri + "\\swagger");
             return response;
         }
+
+        [Route("health-check")]
+        [HttpGet]
+        public HttpResponseMessage Check()
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            return response;
+        }
     }
 }

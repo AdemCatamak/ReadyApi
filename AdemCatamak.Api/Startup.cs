@@ -7,6 +7,8 @@ namespace AdemCatamak.Api
 {
     public class Startup
     {
+        public static IContainer IoCContainer { get; set; }
+
         public void Configuration(IAppBuilder appBuilder)
         {
             Configurator configurator = new Configurator();
@@ -17,11 +19,11 @@ namespace AdemCatamak.Api
             configurator.InjectDependencies(config, ref containerBuilder);
             configurator.DetectDependencies(ref containerBuilder);
 
-            IContainer container = containerBuilder.Build();
+            IoCContainer = containerBuilder.Build();
 
-            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(IoCContainer);
 
-            appBuilder.UseAutofacMiddleware(container);
+            appBuilder.UseAutofacMiddleware(IoCContainer);
             appBuilder.UseAutofacWebApi(config);
             appBuilder.UseWebApi(config);
         }

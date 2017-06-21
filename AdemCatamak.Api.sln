@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdemCatamak.Api", "AdemCatamak.Api\AdemCatamak.Api.csproj", "{BFBB96F2-75E9-416B-AA64-B63069B7C851}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdemCatamak.Api.Model", "AdemCatamak.Api.Model\AdemCatamak.Api.Model.csproj", "{5E225237-BA31-46F1-A1D3-E35B4F9C99BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdemCatamak.Api.Test", "AdemCatamak.Api.Test\AdemCatamak.Api.Test.csproj", "{2355C9C5-FA87-43B1-9FE0-A37443F2829F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5E225237-BA31-46F1-A1D3-E35B4F9C99BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E225237-BA31-46F1-A1D3-E35B4F9C99BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E225237-BA31-46F1-A1D3-E35B4F9C99BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2355C9C5-FA87-43B1-9FE0-A37443F2829F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2355C9C5-FA87-43B1-9FE0-A37443F2829F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2355C9C5-FA87-43B1-9FE0-A37443F2829F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2355C9C5-FA87-43B1-9FE0-A37443F2829F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

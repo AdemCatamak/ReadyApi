@@ -1,19 +1,19 @@
 using System.Web.Http;
 using WebActivatorEx;
-using AdemCatamak.Api;
+using AdemCatamak.Api.Test;
 using Swashbuckle.Application;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace AdemCatamak.Api
+namespace AdemCatamak.Api.Test
 {
     public class SwaggerConfig
     {
-        public static void Register(HttpConfiguration config)
+        public static void Register()
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;
 
-            config
+            GlobalConfiguration.Configuration 
                 .EnableSwagger(c =>
                     {
                         // By default, the service root url is inferred from the request used to access the docs.
@@ -32,7 +32,7 @@ namespace AdemCatamak.Api
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "AdemCatamak.Api");
+                        c.SingleApiVersion("v1", "AdemCatamak.Api.Test");
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be

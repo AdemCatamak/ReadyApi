@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace AdemCatamak.Api.Controller
+namespace AdemCatamak.Api.Controllers
 {
     [RoutePrefix("")]
     public class DefaultController : ApiController
@@ -21,7 +21,7 @@ namespace AdemCatamak.Api.Controller
         [HttpGet]
         public HttpResponseMessage Check()
         {
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, true);
             return response;
         }
     }

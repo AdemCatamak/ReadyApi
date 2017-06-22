@@ -1,22 +1,15 @@
 ﻿using System.Net.Http;
 using System.Web.Http.Filters;
-using AdemCatamak.Api.Model;
+using AdemCatamak.Api.Model.Responses;
+using AdemCatamak.Api.Model.Responses.Imp;
 using AdemCatamak.Logger;
 using AdemCatamak.Utilities;
 using Autofac.Integration.WebApi;
 
-namespace AdemCatamak.Api
+namespace AdemCatamak.Api.Handlers
 {
     public class GeneralExceptionHandler : ExceptionFilterAttribute, IAutofacExceptionFilter
     {
-        #region ErrorResponse
-
-        private class ErrorResponse : BaseResponse
-        {
-        }
-
-        #endregion
-
         private readonly ILogWrapper _logWrapper;
 
         public GeneralExceptionHandler(ILogWrapper logWrapper)

@@ -13,7 +13,7 @@ namespace AdemCatamak.Api
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;
 
-            config 
+            config
                 .EnableSwagger(c =>
                     {
                         // By default, the service root url is inferred from the request used to access the docs.

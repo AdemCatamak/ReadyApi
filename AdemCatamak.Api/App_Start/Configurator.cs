@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using System.Web.Http;
+using AdemCatamak.Api.Handlers;
 using AdemCatamak.Api.Model;
 using AdemCatamak.DAL;
 using AdemCatamak.Logger;
 using AdemCatamak.Utilities;
 using Autofac.Integration.WebApi;
+using Newtonsoft.Json;
 
 namespace AdemCatamak.Api
 {
@@ -18,8 +20,11 @@ namespace AdemCatamak.Api
             HttpConfiguration config = new HttpConfiguration();
             config.MapHttpAttributeRoutes();
 
-            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling =
-                Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            config.Formatters.JsonFormatter.SerializerSettings = new JsonSerializerSettings()
+                                                                 {
+                                                                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                                                                     ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
+                                                                 };
 
             SwaggerConfig.Register(config);
 
@@ -28,7 +33,7 @@ namespace AdemCatamak.Api
             return config;
         }
 
-        public void InjectDependencies(HttpConfiguration config, ref ContainerBuilder containerBuilder)
+        public void InjectDependencies(ref ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterType<LogWrapper>()
                             .As<ILogWrapper>()
@@ -36,7 +41,6 @@ namespace AdemCatamak.Api
                             .InstancePerRequest();
 
             containerBuilder.RegisterApiControllers(AppDomain.CurrentDomain.GetAssemblies());
-            containerBuilder.RegisterWebApiFilterProvider(config);
 
             containerBuilder.Register(c => new GeneralExceptionHandler(c.Resolve<ILogWrapper>()))
                             .AsWebApiExceptionFilterFor<ApiController>()

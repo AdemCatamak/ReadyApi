@@ -19,9 +19,6 @@ namespace AdemCatamak.Api.Test
 
                 bool isILoggerRegistered = container.IsRegistered<ILogWrapper>();
                 Assert.IsTrue(isILoggerRegistered);
-
-                //bool isGeneralExceptionHandlerRegistered = container.IsRegistered<GeneralExceptionHandler>();
-                //Assert.IsTrue(isGeneralExceptionHandlerRegistered);
             }
         }
     }

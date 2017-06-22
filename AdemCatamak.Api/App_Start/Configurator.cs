@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using System.Web.Http;
+using AdemCatamak.Api.Handlers;
 using AdemCatamak.Api.Model;
 using AdemCatamak.DAL;
 using AdemCatamak.Logger;
@@ -28,7 +29,7 @@ namespace AdemCatamak.Api
             return config;
         }
 
-        public void InjectDependencies(HttpConfiguration config, ref ContainerBuilder containerBuilder)
+        public void InjectDependencies(ref ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterType<LogWrapper>()
                             .As<ILogWrapper>()
@@ -36,7 +37,6 @@ namespace AdemCatamak.Api
                             .InstancePerRequest();
 
             containerBuilder.RegisterApiControllers(AppDomain.CurrentDomain.GetAssemblies());
-            containerBuilder.RegisterWebApiFilterProvider(config);
 
             containerBuilder.Register(c => new GeneralExceptionHandler(c.Resolve<ILogWrapper>()))
                             .AsWebApiExceptionFilterFor<ApiController>()

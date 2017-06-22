@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdemCatamak.Api", "AdemCata
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdemCatamak.Api.Model", "AdemCatamak.Api.Model\AdemCatamak.Api.Model.csproj", "{5E225237-BA31-46F1-A1D3-E35B4F9C99BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdemCatamak.Api.Test", "AdemCatamak.Api.Test\AdemCatamak.Api.Test.csproj", "{2355C9C5-FA87-43B1-9FE0-A37443F2829F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdemCatamak.Api.Test", "AdemCatamak.Api.Test\AdemCatamak.Api.Test.csproj", "{8B817B21-DCE1-4470-A7F7-83F2733590BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{5E225237-BA31-46F1-A1D3-E35B4F9C99BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E225237-BA31-46F1-A1D3-E35B4F9C99BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E225237-BA31-46F1-A1D3-E35B4F9C99BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2355C9C5-FA87-43B1-9FE0-A37443F2829F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2355C9C5-FA87-43B1-9FE0-A37443F2829F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2355C9C5-FA87-43B1-9FE0-A37443F2829F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2355C9C5-FA87-43B1-9FE0-A37443F2829F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B817B21-DCE1-4470-A7F7-83F2733590BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B817B21-DCE1-4470-A7F7-83F2733590BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B817B21-DCE1-4470-A7F7-83F2733590BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B817B21-DCE1-4470-A7F7-83F2733590BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

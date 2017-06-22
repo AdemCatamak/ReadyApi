@@ -1,5 +1,4 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("AdemCatamak.Api.Test")]
@@ -13,7 +12,7 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: Guid("2355c9c5-fa87-43b1-9fe0-a37443f2829f")]
+[assembly: Guid("8b817b21-dce1-4470-a7f7-83f2733590bf")]
 
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]

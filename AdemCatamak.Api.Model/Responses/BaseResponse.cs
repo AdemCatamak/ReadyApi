@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AdemCatamak.Api.Model
+namespace AdemCatamak.Api.Model.Responses
 {
     public abstract class BaseResponse
     {

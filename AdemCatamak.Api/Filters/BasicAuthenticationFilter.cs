@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
@@ -15,13 +17,15 @@ using AdemCatamak.Utilities;
 
 namespace AdemCatamak.Api.Filters
 {
-    public class BasicAuthenticationFilter : IAuthenticationFilter
+    internal class BasicAuthenticationFilter : IAuthenticationFilter
     {
-        private readonly IAuthenticationChecker _checker;
+        private readonly IAuthenticationChecker _authenticationChecker;
+        private readonly IUserRoleStore _userRoleStore;
 
-        public BasicAuthenticationFilter(IAuthenticationChecker checker)
+        public BasicAuthenticationFilter(IAuthenticationChecker authenticationChecker, IUserRoleStore userRoleStore = null)
         {
-            _checker = checker;
+            _authenticationChecker = authenticationChecker;
+            _userRoleStore = userRoleStore;
         }
 
         public bool AllowMultiple => false;
@@ -57,7 +61,28 @@ namespace AdemCatamak.Api.Filters
             string userName = userNameAndPasword.Item1;
             string password = userNameAndPasword.Item2;
 
-            IPrincipal principal = _checker.Check(userName, password, cancellationToken);
+            bool hasUserRight = _authenticationChecker.Check(userName, password);
+
+            IPrincipal principal = null;
+
+            if (hasUserRight)
+            {
+                string[] roles = { };
+                GenericIdentity identity = new GenericIdentity(userName);
+
+                if (_userRoleStore != null)
+                {
+                    IEnumerable<string> roleInfo = _userRoleStore.GetRoles(userName);
+                    roles = roleInfo?.ToArray() ?? new string[]{};
+
+                    foreach (string role in roles)
+                    {
+                        identity.AddClaim(new Claim(ClaimTypes.Role, role));
+                    }
+                }
+
+                principal = new GenericPrincipal(identity, roles);
+            }
 
             if (principal == null)
             {
@@ -92,23 +117,23 @@ namespace AdemCatamak.Api.Filters
         {
             public AddChallengeOnUnauthorizedResult(AuthenticationHeaderValue challenge, IHttpActionResult innerResult)
             {
-                Challenge = challenge;
-                InnerResult = innerResult;
+                _challenge = challenge;
+                _innerResult = innerResult;
             }
 
-            public AuthenticationHeaderValue Challenge { get; private set; }
+            private AuthenticationHeaderValue _challenge { get; }
 
-            public IHttpActionResult InnerResult { get; private set; }
+            private IHttpActionResult _innerResult { get; }
 
             public async Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
             {
-                HttpResponseMessage response = await InnerResult.ExecuteAsync(cancellationToken);
+                HttpResponseMessage response = await _innerResult.ExecuteAsync(cancellationToken);
 
                 if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    if (response.Headers.WwwAuthenticate.All(h => h.Scheme != Challenge.Scheme))
+                    if (response.Headers.WwwAuthenticate.All(h => h.Scheme != _challenge.Scheme))
                     {
-                        response.Headers.WwwAuthenticate.Add(Challenge);
+                        response.Headers.WwwAuthenticate.Add(_challenge);
                     }
                 }
 
@@ -118,15 +143,15 @@ namespace AdemCatamak.Api.Filters
 
         private class AuthenticationFailureResult : IHttpActionResult
         {
+            private string _reasonPhrase { get; }
+            private HttpRequestMessage _request { get; }
+
             public AuthenticationFailureResult(string reasonPhrase, HttpRequestMessage request)
             {
-                ReasonPhrase = reasonPhrase;
-                Request = request;
+                _reasonPhrase = reasonPhrase;
+                _request = request;
             }
 
-            private string ReasonPhrase { get; set; }
-
-            private HttpRequestMessage Request { get; set; }
 
             public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
             {
@@ -135,15 +160,14 @@ namespace AdemCatamak.Api.Filters
 
             private HttpResponseMessage Execute()
             {
-                ErrorResponse errorResponse = new ErrorResponse()
-                                              {
-                                                  ErrorMessageList = {ReasonPhrase}
-                                              };
+                ErrorResponse errorResponse = new ErrorResponse();
+                errorResponse.AddErrorMessage(_reasonPhrase);
+                                             
 
                 HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
                                                {
-                                                   RequestMessage = Request,
-                                                   ReasonPhrase = ReasonPhrase,
+                                                   RequestMessage = _request,
+                                                   ReasonPhrase = _reasonPhrase,
                                                    Content = new StringContent(errorResponse.Serialize())
                                                };
                 return response;

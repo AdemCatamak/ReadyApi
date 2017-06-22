@@ -1,7 +1,4 @@
-﻿using System.Security.Principal;
-using System.Threading;
-
-namespace AdemCatamak.Api.Model
+﻿namespace AdemCatamak.Api.Model
 {
     public interface IAuthenticationChecker
     {
@@ -10,8 +7,7 @@ namespace AdemCatamak.Api.Model
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="password"></param>
-        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        IPrincipal Check(string userName, string password, CancellationToken cancellationToken);
+        bool Check(string userName, string password);
     }
 }

@@ -3,7 +3,7 @@ using Autofac;
 using Microsoft.Owin.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AdemCatamak.Api.Test
+namespace AdemCatamak.Api.Test.StartupTest
 {
     [TestClass]
     public class WebApiConfigTest

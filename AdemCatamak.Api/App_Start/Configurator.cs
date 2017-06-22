@@ -9,6 +9,7 @@ using AdemCatamak.DAL;
 using AdemCatamak.Logger;
 using AdemCatamak.Utilities;
 using Autofac.Integration.WebApi;
+using Newtonsoft.Json;
 
 namespace AdemCatamak.Api
 {
@@ -19,8 +20,11 @@ namespace AdemCatamak.Api
             HttpConfiguration config = new HttpConfiguration();
             config.MapHttpAttributeRoutes();
 
-            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling =
-                Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            config.Formatters.JsonFormatter.SerializerSettings = new JsonSerializerSettings()
+                                                                 {
+                                                                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                                                                     ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
+                                                                 };
 
             SwaggerConfig.Register(config);
 

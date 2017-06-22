@@ -1,4 +1,7 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Filters;
+using AdemCatamak.Api.Filters;
+using AdemCatamak.Api.Model;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Owin;
@@ -8,7 +11,7 @@ namespace AdemCatamak.Api
     public class Startup
     {
         public static IContainer IoCContainer { get; set; }
-        public static HttpConfiguration HttpConfig { get; set; }
+        private static HttpConfiguration HttpConfig { get; set; }
 
         public void Configuration(IAppBuilder appBuilder)
         {
@@ -21,7 +24,7 @@ namespace AdemCatamak.Api
             configurator.DetectDependencies(ref containerBuilder);
 
             containerBuilder.RegisterWebApiFilterProvider(config);
-            
+
             IoCContainer = containerBuilder.Build();
 
             config.DependencyResolver = new AutofacWebApiDependencyResolver(IoCContainer);
@@ -33,14 +36,46 @@ namespace AdemCatamak.Api
             HttpConfig = config;
         }
 
-        public static void UpdateConfiguration(HttpConfiguration config)
+        public static void UpdateConfiguration(IStartupConfigure configurator)
         {
             ContainerBuilder newBuilder = new ContainerBuilder();
-            newBuilder.RegisterWebApiFilterProvider(config);
 
+            configurator.Configure(HttpConfig);
+            newBuilder.RegisterWebApiFilterProvider(HttpConfig);
+
+#pragma warning disable 618
             newBuilder.Update(IoCContainer);
+#pragma warning restore 618
+        }
 
-            HttpConfig = config;
+        public static void AddFilter(IFilter filter)
+        {
+            ContainerBuilder newBuilder = new ContainerBuilder();
+
+            HttpConfig.Filters.Add(filter);
+            newBuilder.RegisterWebApiFilterProvider(HttpConfig);
+
+#pragma warning disable 618
+            newBuilder.Update(IoCContainer);
+#pragma warning restore 618
+        }
+
+        public static void RemoveFilter(IFilter filter)
+        {
+            ContainerBuilder newBuilder = new ContainerBuilder();
+
+            HttpConfig.Filters.Remove(filter);
+            newBuilder.RegisterWebApiFilterProvider(HttpConfig);
+
+#pragma warning disable 618
+            newBuilder.Update(IoCContainer);
+#pragma warning restore 618
+        }
+
+        public static void UseBasicAuthentication(IAuthenticationChecker authenticationChecker, IUserRoleStore userRoleStore = null)
+        {
+            BasicAuthenticationFilter basicAuthenticationFilter = new BasicAuthenticationFilter(authenticationChecker, userRoleStore);
+            AddFilter(basicAuthenticationFilter);
         }
     }
 }

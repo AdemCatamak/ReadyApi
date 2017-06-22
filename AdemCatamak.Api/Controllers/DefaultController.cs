@@ -21,7 +21,7 @@ namespace AdemCatamak.Api.Controllers
         [HttpGet]
         public HttpResponseMessage Check()
         {
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, true);
             return response;
         }
     }

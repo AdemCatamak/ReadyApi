@@ -34,14 +34,17 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdemCatamak.Api.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AdemCatamak.Api.Model.1.0.6\lib\net461\AdemCatamak.Api.Model.dll</HintPath>
+    </Reference>
     <Reference Include="AdemCatamak.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AdemCatamak.DAL.1.0.1.3\lib\net46\AdemCatamak.DAL.dll</HintPath>
+      <HintPath>..\packages\AdemCatamak.DAL.1.0.6\lib\net461\AdemCatamak.DAL.dll</HintPath>
     </Reference>
     <Reference Include="AdemCatamak.Logger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AdemCatamak.Logger.1.0.1.5\lib\net46\AdemCatamak.Logger.dll</HintPath>
+      <HintPath>..\packages\AdemCatamak.Logger.1.0.7\lib\net461\AdemCatamak.Logger.dll</HintPath>
     </Reference>
     <Reference Include="AdemCatamak.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AdemCatamak.Utilities.1.0.0.7\lib\net46\AdemCatamak.Utilities.dll</HintPath>
+      <HintPath>..\packages\AdemCatamak.Utilities.1.0.9\lib\net461\AdemCatamak.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="Autofac, Version=4.6.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.6.0\lib\net45\Autofac.dll</HintPath>
@@ -55,8 +58,8 @@
     <Reference Include="Autofac.Integration.WebApi.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.Owin.4.0.0\lib\net45\Autofac.Integration.WebApi.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="AutoMapper, Version=6.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.1.0\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -78,7 +81,6 @@
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -139,15 +141,6 @@
     <None Include="LICENSE" />
     <None Include="log4net.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="nuget.exe" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AdemCatamak.Api.Model\AdemCatamak.Api.Model.csproj">
-      <Project>{5e225237-ba31-46f1-a1d3-e35b4f9c99bc}</Project>
-      <Name>AdemCatamak.Api.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,7 +4,7 @@
 
   <metadata>
     <id>AdemCatamak.Api.Model</id>
-    <version>1.0.2</version>
+    <version>1.0.8</version>
     <title>AdemCatamak.Api.Model</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
@@ -20,6 +20,13 @@
     <dependencies>
       <dependency id="Autofac" version="4.6.0" />
     </dependencies>
+
+
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Web" />
+      <frameworkAssembly assemblyName="System.Web.Http" />
+    </frameworkAssemblies>
+
   </metadata>
 
   <files>

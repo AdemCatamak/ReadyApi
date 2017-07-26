@@ -15,7 +15,6 @@ namespace ReadyApi.Test.StartupTest
         {
             using (WebApp.Start<Startup>(baseAddress))
             {
-                Startup.UseDefaultGlobalExceptionHandler();
                 IContainer container = Startup.IoCContainer;
 
                 bool isILoggerRegistered = container.IsRegistered<LoggerMaestro>();

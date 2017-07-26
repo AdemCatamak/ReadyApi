@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using Microsoft.Owin.Hosting;
-using AdemCatamak.Api;
+using ReadyApi;
 
 namespace $rootnamespace$
 {

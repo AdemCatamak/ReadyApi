@@ -83,47 +83,5 @@ namespace ReadyApi
             BasicAuthenticationFilter basicAuthenticationFilter = new BasicAuthenticationFilter(authenticationChecker, userRoleStore);
             AddFilter(basicAuthenticationFilter);
         }
-
-        public static void UseDefaultGlobalExceptionHandler()
-        {
-            List<Type> logEngineTypes = ModelCollector.GetInheritedTypes(typeof(ILogEngine))
-                                                      .ToList();
-            List<ILogEngine> logEngines = new List<ILogEngine>();
-            foreach (Type logEngineType in logEngineTypes)
-            {
-                try
-                {
-                    ILogEngine logEngine = Extensions.CreateInstance(logEngineType) as ILogEngine;
-                    logEngines.Add(logEngine);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"ILogEngine Creation Error{Environment.NewLine}{e.Serialize()}");
-                }
-            }
-
-            LoggerMaestro loggerMaestro = new LoggerMaestro();
-            logEngines.ForEach(engine => loggerMaestro.AddLogger(nameof(engine), engine));
-
-            ContainerBuilder containerBuilder = new ContainerBuilder();
-
-            containerBuilder.RegisterInstance(loggerMaestro)
-                            .As<LoggerMaestro>()
-                            .AsSelf()
-                            .PropertiesAutowired()
-                            .SingleInstance();
-
-
-            containerBuilder.Register(c => new GeneralExceptionHandler(c.Resolve<LoggerMaestro>()))
-                            .AsWebApiExceptionFilterFor<ApiController>()
-                            .InstancePerRequest();
-
-            if (IoCContainer != null)
-            {
-#pragma warning disable 618
-                containerBuilder.Update(IoCContainer);
-#pragma warning restore 618
-            }
-        }
     }
 }

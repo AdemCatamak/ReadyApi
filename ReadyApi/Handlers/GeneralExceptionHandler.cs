@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Web.Http.Filters;
 using Alternatives;
+using Alternatives.CustomExceptions;
 using Autofac.Integration.WebApi;
 using RapidLogger;
 using ReadyApi.Model.Responses;
@@ -23,13 +24,7 @@ namespace ReadyApi.Handlers
             BaseResponse errorResponse = new ErrorResponse();
 
             FriendlyException friendlyException = context.Exception as FriendlyException;
-            if (friendlyException == null)
-            {
-                _loggerMaestro.ErrorAsync(context.Exception);
-                errorResponse.AddErrorMessage(context.Exception.Message);
-                context.Response.StatusCode = HttpStatusCode.InternalServerError;
-            }
-            else
+            if (friendlyException != null)
             {
                 if (friendlyException.InnerException != null)
                 {
@@ -37,6 +32,14 @@ namespace ReadyApi.Handlers
                 }
                 errorResponse.AddErrorMessage(friendlyException.FriendlyMessage);
                 context.Response.StatusCode = HttpStatusCode.BadRequest;
+                context.Response.ReasonPhrase = friendlyException.FriendlyMessage;
+            }
+            else
+            {
+                _loggerMaestro.ErrorAsync(context.Exception);
+                errorResponse.AddErrorMessage("Unexpected Error");
+                context.Response.StatusCode = HttpStatusCode.InternalServerError;
+                context.Response.ReasonPhrase = "Unexpected Error";
             }
 
 

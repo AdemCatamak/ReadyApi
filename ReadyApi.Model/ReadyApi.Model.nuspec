@@ -4,12 +4,12 @@
 
   <metadata>
     <id>ReadyApi.Model</id>
-    <version>1.0.8</version>
+    <version>1.0.1</version>
     <title>ReadyApi.Model</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
-    <licenseUrl><![CDATA[https://bitbucket.org/ademcatamak/ademcatamak.api/commits/307f231c3ce9c6e1eb1df7618aa6ce09d5e4f5b5]]></licenseUrl>
-    <projectUrl>https://bitbucket.org/ademcatamak/ademcatamak.api/wiki/Home</projectUrl>
+    <licenseUrl><![CDATA[https://bitbucket.org/ademcatamak/readyapi/src/9d3a21752ea8b21013613b8e92e69246884f2b85/ReadyApi.Model/LICENCE.txt?at=master&fileviewer=file-view-default]]></licenseUrl>
+    <projectUrl>https://bitbucket.org/ademcatamak/readyapi/wiki/Home</projectUrl>
     <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Basic Api Requirements with Owin</description>

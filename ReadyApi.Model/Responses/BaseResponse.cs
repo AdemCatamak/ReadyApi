@@ -1,21 +1,22 @@
 ﻿using System.Collections.Generic;
+using ReadyApi.Model.Enumaration;
+using ReadyApi.Model.Helper;
 
 namespace ReadyApi.Model.Responses
 {
     public abstract class BaseResponse
     {
-        public List<string> ErrorMessageList { get; } = new List<string>();
-        public List<string> InfoMessageList { get; } = new List<string>();
+        public List<Message> MessageList { get; } = new List<Message>();
         public bool Success { get; private set; } = true;
 
         public void AddErrorMessage(string message)
         {
             Success = false;
-            ErrorMessageList.Add(message);
+            MessageList.Add(new Message(MessageTypes.ErrorMessage, message));
         }
         public void AddInfoMessage(string message)
         {
-            InfoMessageList.Add(message);
+            MessageList.Add(new Message(MessageTypes.InfoMessage, message));
         }
     }
 }

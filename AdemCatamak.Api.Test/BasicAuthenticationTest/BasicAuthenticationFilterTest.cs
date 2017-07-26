@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AdemCatamak.Api.Test.BasicAuthenticationTest
+namespace ReadyApi.Test.BasicAuthenticationTest
 {
     [TestClass]
     public class BasicAuthenticationFilterTest

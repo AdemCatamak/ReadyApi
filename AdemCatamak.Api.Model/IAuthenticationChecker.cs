@@ -1,4 +1,4 @@
-﻿namespace AdemCatamak.Api.Model
+﻿namespace ReadyApi.Model
 {
     public interface IAuthenticationChecker
     {

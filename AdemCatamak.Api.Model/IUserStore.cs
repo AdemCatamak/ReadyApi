@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AdemCatamak.Api.Model
+namespace ReadyApi.Model
 {
     public interface IUserRoleStore
     {

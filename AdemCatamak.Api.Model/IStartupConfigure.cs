@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace AdemCatamak.Api.Model
+namespace ReadyApi.Model
 {
     public interface IStartupConfigure
     {

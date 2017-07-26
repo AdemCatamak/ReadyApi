@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace AdemCatamak.Api.Test.BasicAuthenticationTest
+namespace ReadyApi.Test.BasicAuthenticationTest
 {
     [RoutePrefix("dummy")]
     public class DummyController : ApiController

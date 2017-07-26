@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace AdemCatamak.Api.Controllers
+namespace ReadyApi.Controllers
 {
     [RoutePrefix("")]
     public class DefaultController : ApiController

@@ -1,20 +1,21 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Web.Http.Filters;
-using AdemCatamak.Api.Model.Responses;
-using AdemCatamak.Api.Model.Responses.Imp;
-using AdemCatamak.Logger;
-using AdemCatamak.Utilities;
+using Alternatives;
 using Autofac.Integration.WebApi;
+using RapidLogger;
+using ReadyApi.Model.Responses;
+using ReadyApi.Model.Responses.Imp;
 
-namespace AdemCatamak.Api.Handlers
+namespace ReadyApi.Handlers
 {
     public class GeneralExceptionHandler : ExceptionFilterAttribute, IAutofacExceptionFilter
     {
-        private readonly ILogWrapper _logWrapper;
+        private readonly LoggerMaestro _loggerMaestro;
 
-        public GeneralExceptionHandler(ILogWrapper logWrapper)
+        public GeneralExceptionHandler(LoggerMaestro loggerMaestro)
         {
-            _logWrapper = logWrapper;
+            _loggerMaestro = loggerMaestro;
         }
 
         public override void OnException(HttpActionExecutedContext context)
@@ -24,16 +25,18 @@ namespace AdemCatamak.Api.Handlers
             FriendlyException friendlyException = context.Exception as FriendlyException;
             if (friendlyException == null)
             {
-                _logWrapper.ErrorAsync(context.Exception);
+                _loggerMaestro.ErrorAsync(context.Exception);
                 errorResponse.AddErrorMessage(context.Exception.Message);
+                context.Response.StatusCode = HttpStatusCode.InternalServerError;
             }
             else
             {
                 if (friendlyException.InnerException != null)
                 {
-                    _logWrapper.ErrorAsync(friendlyException.FriendlyMessage, friendlyException.InnerException);
+                    _loggerMaestro.ErrorAsync(friendlyException.FriendlyMessage, friendlyException.InnerException);
                 }
                 errorResponse.AddErrorMessage(friendlyException.FriendlyMessage);
+                context.Response.StatusCode = HttpStatusCode.BadRequest;
             }
 
 

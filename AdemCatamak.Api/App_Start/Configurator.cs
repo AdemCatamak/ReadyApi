@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autofac;
 using System.Web.Http;
-using AdemCatamak.Api.Handlers;
-using AdemCatamak.Api.Model;
-using AdemCatamak.DAL;
-using AdemCatamak.Logger;
-using AdemCatamak.Utilities;
+using AdemCatamak.Api;
+using Alternatives;
+using Autofac;
 using Autofac.Integration.WebApi;
 using Newtonsoft.Json;
+using ReadyApi.Model;
 
-namespace AdemCatamak.Api
+namespace ReadyApi
 {
     internal class Configurator
     {
@@ -35,16 +33,9 @@ namespace AdemCatamak.Api
 
         public void InjectDependencies(ref ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterType<LogWrapper>()
-                            .As<ILogWrapper>()
-                            .PropertiesAutowired()
-                            .InstancePerRequest();
 
             containerBuilder.RegisterApiControllers(AppDomain.CurrentDomain.GetAssemblies());
 
-            containerBuilder.Register(c => new GeneralExceptionHandler(c.Resolve<ILogWrapper>()))
-                            .AsWebApiExceptionFilterFor<ApiController>()
-                            .InstancePerRequest();
         }
 
         public void DetectDependencies(ref ContainerBuilder containerBuilder)

@@ -11,11 +11,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Filters;
-using AdemCatamak.Api.Model;
-using AdemCatamak.Api.Model.Responses.Imp;
-using AdemCatamak.Utilities;
+using Alternatives;
+using ReadyApi.Model;
+using ReadyApi.Model.Responses.Imp;
 
-namespace AdemCatamak.Api.Filters
+namespace ReadyApi.Filters
 {
     internal class BasicAuthenticationFilter : IAuthenticationFilter
     {

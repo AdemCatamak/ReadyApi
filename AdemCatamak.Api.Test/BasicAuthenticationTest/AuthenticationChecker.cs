@@ -1,6 +1,6 @@
-﻿using AdemCatamak.Api.Model;
+﻿using ReadyApi.Model;
 
-namespace AdemCatamak.Api.Test.BasicAuthenticationTest
+namespace ReadyApi.Test.BasicAuthenticationTest
 {
     public class AuthenticationChecker : IAuthenticationChecker
     {

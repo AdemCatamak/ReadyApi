@@ -1,11 +1,11 @@
 using System.Web.Http;
 using WebActivatorEx;
-using AdemCatamak.Api;
+using ReadyApi;
 using Swashbuckle.Application;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace AdemCatamak.Api
+namespace ReadyApi
 {
     public class SwaggerConfig
     {
@@ -13,8 +13,7 @@ namespace AdemCatamak.Api
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;
 
-            config
-                .EnableSwagger(c =>
+            config.EnableSwagger(c =>
                     {
                         // By default, the service root url is inferred from the request used to access the docs.
                         // However, there may be situations (e.g. proxy and load-balanced environments) where this does not
@@ -32,7 +31,7 @@ namespace AdemCatamak.Api
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "AdemCatamak.Api");
+                        c.SingleApiVersion("v1", "ReadyApi");
 
                         // If your API has multiple versions, use "MultipleApiVersions" instead of "SingleApiVersion".
                         // In this case, you must provide a lambda that tells Swashbuckle which actions should be

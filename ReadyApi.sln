@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadyApi", "AdemCatamak.Api\ReadyApi.csproj", "{BFBB96F2-75E9-416B-AA64-B63069B7C851}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadyApi", "ReadyApi\ReadyApi.csproj", "{BFBB96F2-75E9-416B-AA64-B63069B7C851}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadyApi.Model", "AdemCatamak.Api.Model\ReadyApi.Model.csproj", "{5E225237-BA31-46F1-A1D3-E35B4F9C99BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadyApi.Model", "ReadyApi.Model\ReadyApi.Model.csproj", "{5E225237-BA31-46F1-A1D3-E35B4F9C99BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadyApi.Test", "AdemCatamak.Api.Test\ReadyApi.Test.csproj", "{8B817B21-DCE1-4470-A7F7-83F2733590BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadyApi.Test", "ReadyApi.Test\ReadyApi.Test.csproj", "{8B817B21-DCE1-4470-A7F7-83F2733590BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

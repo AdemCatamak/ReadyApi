@@ -25,6 +25,7 @@
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Web" />
       <frameworkAssembly assemblyName="System.Web.Http" />
+      <frameworkAssembly assemblyName="System.Net" />
       <frameworkAssembly assemblyName="System.Net.Http.Formatting" />
     </frameworkAssemblies>
 

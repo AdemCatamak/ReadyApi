@@ -119,9 +119,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Content\app.config.install.xdt" />
-    <None Include="Content\Program.cs.pp" />
-    <None Include="Content\web.config.install.xdt" />
+    <None Include="Content\app.config.install.xdt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Program.cs.pp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\web.config.install.xdt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="ReadyApi.nuspec" />
   </ItemGroup>

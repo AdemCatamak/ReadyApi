@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Filters;
-using Alternatives;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Owin;
-using RapidLogger;
 using ReadyApi.Filters;
-using ReadyApi.Handlers;
 using ReadyApi.Model;
 
 namespace ReadyApi

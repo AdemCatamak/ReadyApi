@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Filters;
-using Alternatives;
+using Alternatives.Extensions;
 using ReadyApi.Model;
 using ReadyApi.Model.Responses.Imp;
 

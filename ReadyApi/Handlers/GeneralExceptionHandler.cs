@@ -1,8 +1,9 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;
-using Alternatives;
 using Alternatives.CustomExceptions;
+using Alternatives.Extensions;
 using Autofac.Integration.WebApi;
 using RapidLogger;
 using ReadyApi.Model.Responses;
@@ -23,20 +24,27 @@ namespace ReadyApi.Handlers
         {
             BaseResponse errorResponse = new ErrorResponse();
 
-            FriendlyException friendlyException = context.Exception as FriendlyException;
-            if (friendlyException != null)
+            if (context.Exception is FriendlyException friendlyException)
             {
-                if (friendlyException.InnerException != null)
-                {
-                    _loggerMaestro.ErrorAsync(friendlyException.FriendlyMessage, friendlyException.InnerException);
-                }
+                _loggerMaestro.Info($"{friendlyException.FriendlyMessage} :{Environment.NewLine}" +
+                                    $"{friendlyException.InnerException}");
+
                 errorResponse.AddErrorMessage(friendlyException.FriendlyMessage);
                 context.Response.StatusCode = HttpStatusCode.BadRequest;
                 context.Response.ReasonPhrase = friendlyException.FriendlyMessage;
             }
+            else if (context.Exception is BusinessException businessException)
+            {
+                _loggerMaestro.Warning($"{businessException.ErrorMessage} :{Environment.NewLine}" +
+                                       $"{businessException.InnerException}");
+
+                errorResponse.AddErrorMessage(businessException.ErrorMessage);
+                context.Response.StatusCode = HttpStatusCode.InternalServerError;
+                context.Response.ReasonPhrase = businessException.ErrorMessage;
+            }
             else
             {
-                _loggerMaestro.ErrorAsync(context.Exception);
+                _loggerMaestro.Error(context.Exception);
                 errorResponse.AddErrorMessage("Unexpected Error");
                 context.Response.StatusCode = HttpStatusCode.InternalServerError;
                 context.Response.ReasonPhrase = "Unexpected Error";

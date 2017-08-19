@@ -76,7 +76,7 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="RapidLogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RapidLogger.1.0.2\lib\net45\RapidLogger.dll</HintPath>
+      <HintPath>..\packages\RapidLogger.1.0.3\lib\net45\RapidLogger.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

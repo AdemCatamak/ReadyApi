@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Alternatives, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Alternatives.1.0.2\lib\net45\Alternatives.dll</HintPath>
+      <HintPath>..\packages\Alternatives.1.0.6.3\lib\net45\Alternatives.dll</HintPath>
     </Reference>
     <Reference Include="Autofac, Version=4.6.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.6.0\lib\net45\Autofac.dll</HintPath>
@@ -71,7 +71,7 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="RapidLogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RapidLogger.1.0.2\lib\net45\RapidLogger.dll</HintPath>
+      <HintPath>..\packages\RapidLogger.1.0.3\lib\net45\RapidLogger.dll</HintPath>
     </Reference>
     <Reference Include="ReadyApi.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ReadyApi.Model.1.0.1\lib\net45\ReadyApi.Model.dll</HintPath>

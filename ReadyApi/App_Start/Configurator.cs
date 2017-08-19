@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using Alternatives;
+using Alternatives.Extensions;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Newtonsoft.Json;
@@ -34,7 +34,7 @@ namespace ReadyApi
 
         public void InjectDependencies(ref ContainerBuilder containerBuilder)
         {
-            List<Type> logEngineTypes = ModelCollector.GetInheritedTypes(typeof(ILogEngine))
+            List<Type> logEngineTypes = ReflectionExtensions.GetInheritedTypes(typeof(ILogEngine))
                                                       .ToList();
 
             List<ILogEngine> logEngines = new List<ILogEngine>();
@@ -42,7 +42,7 @@ namespace ReadyApi
             {
                 try
                 {
-                    ILogEngine logEngine = Extensions.CreateInstance(logEngineType) as ILogEngine;
+                    ILogEngine logEngine = ReflectionExtensions.CreateInstance(logEngineType) as ILogEngine;
                     logEngines.Add(logEngine);
                 }
                 catch (Exception e)
@@ -69,7 +69,7 @@ namespace ReadyApi
 
         public void DetectDependencies(ref ContainerBuilder containerBuilder)
         {
-            List<Type> containerRegisters = ModelCollector.GetInheritedTypes(typeof(IIoCContainer))
+            List<Type> containerRegisters = ReflectionExtensions.GetInheritedTypes(typeof(IIoCContainer))
                                                           .ToList();
 
             foreach (Type type in containerRegisters)
@@ -77,7 +77,7 @@ namespace ReadyApi
                 Console.WriteLine($"{Environment.NewLine}{type.Name} - Registration Start");
                 try
                 {
-                    IIoCContainer customContainer = Extensions.CreateInstance(type) as IIoCContainer;
+                    IIoCContainer customContainer = ReflectionExtensions.CreateInstance(type) as IIoCContainer;
                     if (customContainer != null)
                     {
                         containerBuilder = customContainer.Register(containerBuilder);

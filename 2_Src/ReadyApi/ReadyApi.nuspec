@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<package>
+  <metadata>
+    <id>ReadyApi</id>
+    <version>1.0.0</version>
+    <title>ReadyApi</title>
+    <authors>Adem Catamak</authors>
+    <owners>Adem Catamak</owners>
+    <licenseUrl><![CDATA[https://bitbucket.org/ademcatamak/readyapi/src/72ee7198f53c4469418e7ec17f98ef7a34723775/ReadyApi/LICENCE.txt?at=master&fileviewer=file-view-default]]></licenseUrl>
+    <projectUrl>https://bitbucket.org/ademcatamak/readyapi/wiki/Home</projectUrl>
+    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Basic Api Requirements with Owin</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>api, basic requirements</tags>
+
+    <dependencies>
+      <dependency id="ReadyApi.Model" version="1.0.1" />
+      <dependency id="Alternatives" version="1.0.2" />
+      <dependency id="Autofac" version="4.6.0" />
+      <dependency id="Autofac.Owin" version="4.0.0" />
+      <dependency id="Autofac.WebApi2" version="4.0.1" />
+      <dependency id="Autofac.WebApi2.Owin" version="4.0.0" />
+      <dependency id="AutoMapper" version="6.1.1" />
+      <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
+      <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.3" />
+      <dependency id="Microsoft.AspNet.WebApi.Owin" version="5.2.3" />
+      <dependency id="Microsoft.AspNet.WebApi.OwinSelfHost" version="5.2.3" />
+      <dependency id="Microsoft.AspNet.WebApi.WebHost" version="5.2.3" />
+      <dependency id="Microsoft.Owin" version="3.1.0" />
+      <dependency id="Microsoft.Owin.Host.HttpListener" version="3.1.0" />
+      <dependency id="Microsoft.Owin.Hosting" version="3.1.0" />
+      <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+      <dependency id="Newtonsoft.Json" version="10.0.3" />
+      <dependency id="Owin" version="1.0" />
+      <dependency id="RapidLogger" version="1.0.2" />
+      <dependency id="Swashbuckle" version="5.5.3" />
+      <dependency id="Swashbuckle.Core" version="5.5.3" />
+      <dependency id="WebActivatorEx" version="2.2.0" />
+    </dependencies>
+
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Configuration" />
+    </frameworkAssemblies>
+
+  </metadata>
+  <files>
+    <file src="bin\Release\ReadyApi.dll" target="lib\net45"></file>
+    <file src="bin\Release\Content\app.config.install.xdt" target="content"></file>
+    <file src="bin\Release\Content\web.config.install.xdt" target="content"></file>
+    <file src="bin\Release\Content\Program.cs.pp" target="content"></file>
+  </files>
+</package>

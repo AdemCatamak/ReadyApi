@@ -3,7 +3,7 @@
 <package>
   <metadata>
     <id>ReadyApi</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>ReadyApi</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
@@ -17,32 +17,36 @@
     <tags>api, basic requirements</tags>
 
     <dependencies>
-      <dependency id="ReadyApi.Model" version="1.0.1" />
-      <dependency id="Alternatives" version="1.0.2" />
-      <dependency id="Autofac" version="4.6.0" />
-      <dependency id="Autofac.Owin" version="4.0.0" />
-      <dependency id="Autofac.WebApi2" version="4.0.1" />
-      <dependency id="Autofac.WebApi2.Owin" version="4.0.0" />
-      <dependency id="AutoMapper" version="6.1.1" />
-      <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
-      <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.3" />
-      <dependency id="Microsoft.AspNet.WebApi.Owin" version="5.2.3" />
-      <dependency id="Microsoft.AspNet.WebApi.OwinSelfHost" version="5.2.3" />
-      <dependency id="Microsoft.AspNet.WebApi.WebHost" version="5.2.3" />
-      <dependency id="Microsoft.Owin" version="3.1.0" />
-      <dependency id="Microsoft.Owin.Host.HttpListener" version="3.1.0" />
-      <dependency id="Microsoft.Owin.Hosting" version="3.1.0" />
-      <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
-      <dependency id="Newtonsoft.Json" version="10.0.3" />
-      <dependency id="Owin" version="1.0" />
-      <dependency id="RapidLogger" version="1.0.2" />
-      <dependency id="Swashbuckle" version="5.5.3" />
-      <dependency id="Swashbuckle.Core" version="5.5.3" />
-      <dependency id="WebActivatorEx" version="2.2.0" />
+      <dependency id="Alternatives" version="1.0.6.3" targetFramework="net45" />
+      <dependency id="Autofac" version="4.6.0" targetFramework="net45" />
+      <dependency id="Autofac.Owin" version="4.0.0" targetFramework="net45" />
+      <dependency id="Autofac.WebApi2" version="4.0.1" targetFramework="net45" />
+      <dependency id="Autofac.WebApi2.Owin" version="4.0.0" targetFramework="net45" />
+      <dependency id="AutoMapper" version="6.1.1" targetFramework="net45" />
+      <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" targetFramework="net45" />
+      <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.3" targetFramework="net45" />
+      <dependency id="Microsoft.AspNet.WebApi.Owin" version="5.2.3" targetFramework="net45" />
+      <dependency id="Microsoft.AspNet.WebApi.OwinSelfHost" version="5.2.3" targetFramework="net45" />
+      <dependency id="Microsoft.AspNet.WebApi.WebHost" version="5.2.3" targetFramework="net45" />
+      <dependency id="Microsoft.Owin" version="3.1.0" targetFramework="net45" />
+      <dependency id="Microsoft.Owin.Host.HttpListener" version="3.1.0" targetFramework="net45" />
+      <dependency id="Microsoft.Owin.Hosting" version="3.1.0" targetFramework="net45" />
+      <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" targetFramework="net45" />
+      <dependency id="Newtonsoft.Json" version="10.0.3" targetFramework="net45" />
+      <dependency id="Owin" version="1.0" targetFramework="net45" />
+      <dependency id="RapidLogger" version="1.0.3" targetFramework="net45" />
+      <dependency id="ReadyApi.Model" version="1.0.2" targetFramework="net45" />
+      <dependency id="Swashbuckle" version="5.5.3" targetFramework="net45" />
+      <dependency id="Swashbuckle.Core" version="5.5.3" targetFramework="net45" />
+      <dependency id="WebActivatorEx" version="2.2.0" targetFramework="net45" />
     </dependencies>
 
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Configuration" />
+
+      <frameworkAssembly assemblyName="System.Web" />
+      <frameworkAssembly assemblyName="System.Web.Http" />
+      <frameworkAssembly assemblyName="System.Net" />
     </frameworkAssemblies>
 
   </metadata>

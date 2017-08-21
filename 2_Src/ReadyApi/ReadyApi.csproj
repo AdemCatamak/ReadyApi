@@ -131,8 +131,5 @@
     <None Include="packages.config" />
     <None Include="ReadyApi.nuspec" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="LICENCE.txt" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

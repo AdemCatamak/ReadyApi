@@ -110,9 +110,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENCE.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\2_Src\ReadyApi.Model\ReadyApi.Model.csproj">
       <Project>{081CFA9F-CE94-492B-B0BD-39B4FAE98A3F}</Project>
       <Name>ReadyApi.Model</Name>

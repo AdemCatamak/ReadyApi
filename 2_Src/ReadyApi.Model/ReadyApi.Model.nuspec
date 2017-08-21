@@ -8,8 +8,8 @@
     <title>ReadyApi.Model</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
-    <licenseUrl><![CDATA[https://bitbucket.org/ademcatamak/readyapi/src/4e7a41280dfd230c15e236af2b12aa9e5f5c42fe/1_Solution_Items/LICENSE.txt?at=master&fileviewer=file-view-default]]></licenseUrl>
-    <projectUrl>https://bitbucket.org/ademcatamak/readyapi/wiki/Home</projectUrl>
+    <licenseUrl><![CDATA[https://github.com/AdemCatamak/ReadyApi/blob/master/LICENSE]]></licenseUrl>
+    <projectUrl>https://github.com/AdemCatamak/ReadyApi.git</projectUrl>
     <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Basic Api Requirements with Owin</description>

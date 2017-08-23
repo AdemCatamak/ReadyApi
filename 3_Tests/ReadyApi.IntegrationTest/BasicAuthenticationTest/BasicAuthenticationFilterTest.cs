@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ReadyApi.UnitTest.BasicAuthenticationTest
+namespace ReadyApi.IntegrationTest.BasicAuthenticationTest
 {
     [TestClass]
     public class BasicAuthenticationFilterTest

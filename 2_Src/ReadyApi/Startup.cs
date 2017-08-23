@@ -8,12 +8,12 @@ using ReadyApi.Model;
 
 namespace ReadyApi
 {
-    public class Startup
+    public static class Startup
     {
         public static IContainer IoCContainer { get; set; }
         private static HttpConfiguration HttpConfig { get; set; }
 
-        public void Configuration(IAppBuilder appBuilder)
+        public static void Configuration(IAppBuilder appBuilder)
         {
             Configurator configurator = new Configurator();
             HttpConfiguration config = configurator.Configure();

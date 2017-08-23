@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ReadyApi.UnitTest.StartupTest
+namespace ReadyApi.IntegrationTest.StartupTest
 {
     [TestClass]
     public class WebApiHealthCheckTest

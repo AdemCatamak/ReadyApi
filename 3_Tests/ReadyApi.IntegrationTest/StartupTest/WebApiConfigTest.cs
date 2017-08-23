@@ -3,7 +3,7 @@ using Microsoft.Owin.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RapidLogger;
 
-namespace ReadyApi.UnitTest.StartupTest
+namespace ReadyApi.IntegrationTest.StartupTest
 {
     [TestClass]
     public class WebApiConfigTest

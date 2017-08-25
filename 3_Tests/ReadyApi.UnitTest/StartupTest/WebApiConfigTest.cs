@@ -1,16 +1,16 @@
 ﻿using Autofac;
 using Microsoft.Owin.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using RapidLogger;
 
 namespace ReadyApi.UnitTest.StartupTest
 {
-    [TestClass]
+    
     public class WebApiConfigTest
     {
         private readonly string baseAddress = "http://localhost:9000/";
 
-        [TestMethod]
+        [Test]
         public void ValidateIoCContainerRegistered()
         {
             using (WebApp.Start(baseAddress, Startup.Configuration))

@@ -11,7 +11,7 @@ namespace $rootnamespace$
         {
             string baseAddress = ConfigurationManager.AppSettings["BaseAddress"];
 
-            using (WebApp.Start<Startup>(baseAddress))
+            using (WebApp.Start(baseAddress, Startup.Configuration))
             {
                 Console.WriteLine("Press 'E' for exit");
                 string read;

@@ -2,16 +2,16 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ReadyApi.UnitTest.StartupTest
 {
-    [TestClass]
+    
     public class WebApiHealthCheckTest
     {
         private readonly string _baseAddress = "http://localhost:9000/";
 
-        [TestMethod]
+        [Test]
         public void CheckHealth()
         {
             using (WebApp.Start(_baseAddress, Startup.Configuration))

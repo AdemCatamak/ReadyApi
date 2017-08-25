@@ -5,16 +5,16 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ReadyApi.UnitTest.BasicAuthenticationTest
 {
-    [TestClass]
+    
     public class BasicAuthenticationFilterTest
     {
         private readonly string _baseAddress = "http://localhost:9000/";
 
-        [TestMethod]
+        [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__NotAuthenticate()
         {
             using (WebApp.Start(_baseAddress, Startup.Configuration))
@@ -32,7 +32,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateSuccess_GeneralUser()
         {
             using (WebApp.Start(_baseAddress, Startup.Configuration))
@@ -53,7 +53,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_GeneralUser()
         {
             using (WebApp.Start(_baseAddress, Startup.Configuration))
@@ -74,7 +74,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         }
 
 
-        [TestMethod]
+        [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateSuccess_SpecialUser_OnlyOneRole()
         {
             using (WebApp.Start(_baseAddress, Startup.Configuration))
@@ -94,7 +94,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_OnlyOneRole_WrongPassword()
         {
             using (WebApp.Start(_baseAddress, Startup.Configuration))
@@ -114,7 +114,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_OnlyOneRole_NotValidRole()
         {
             using (WebApp.Start(_baseAddress, Startup.Configuration))
@@ -135,7 +135,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         }
 
 
-        [TestMethod]
+        [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateSuccess_SpecialUser_MultipleRole()
         {
             using (WebApp.Start(_baseAddress, Startup.Configuration))
@@ -155,7 +155,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_MultipleRole_WrongPassword()
         {
             using (WebApp.Start(_baseAddress, Startup.Configuration))
@@ -175,7 +175,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_MultipleRole_NotValid()
         {
             using (WebApp.Start(_baseAddress, Startup.Configuration))

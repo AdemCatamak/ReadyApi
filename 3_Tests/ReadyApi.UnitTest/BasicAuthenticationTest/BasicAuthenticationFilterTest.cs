@@ -23,7 +23,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
 
                 using (HttpClient client = new HttpClient())
                 {
-                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/dummy/double/4");
+                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/basic-authentication-dummy/double/4");
 
                     string responseContent = response.Result.Content.ReadAsStringAsync().Result;
 
@@ -44,7 +44,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:1"));
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", cridentials);
-                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/dummy/user-double/4");
+                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/basic-authentication-dummy/user-double/4");
 
                     string responseContent = response.Result.Content.ReadAsStringAsync().Result;
 
@@ -65,7 +65,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:2"));
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", cridentials);
-                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/dummy/user-double/4");
+                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/basic-authentication-dummy/user-double/4");
 
                     Assert.IsFalse(response.Result.IsSuccessStatusCode);
                     Assert.IsTrue(response.Result.StatusCode == HttpStatusCode.Unauthorized);
@@ -86,7 +86,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:1"));
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", cridentials);
-                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/dummy/special-double-role3/4");
+                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/basic-authentication-dummy/special-double-role3/4");
 
                     string responseContent = response.Result.Content.ReadAsStringAsync().Result;
                     Assert.AreEqual("8", responseContent);
@@ -106,7 +106,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:2"));
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", cridentials);
-                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/dummy/special-double-role3/4");
+                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/basic-authentication-dummy/special-double-role3/4");
 
                     Assert.IsFalse(response.Result.IsSuccessStatusCode);
                     Assert.AreEqual(HttpStatusCode.Unauthorized, response.Result.StatusCode);
@@ -126,7 +126,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:1"));
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", cridentials);
-                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/dummy/special-double-role2/4");
+                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/basic-authentication-dummy/special-double-role2/4");
 
                     Assert.IsFalse(response.Result.IsSuccessStatusCode);
                     Assert.IsTrue(response.Result.StatusCode == HttpStatusCode.Unauthorized);
@@ -147,7 +147,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:1"));
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", cridentials);
-                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/dummy/special-double-roles-valid/4");
+                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/basic-authentication-dummy/special-double-roles-valid/4");
 
                     string responseContent = response.Result.Content.ReadAsStringAsync().Result;
                     Assert.AreEqual("8", responseContent);
@@ -167,7 +167,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:2"));
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", cridentials);
-                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/dummy/special-double-roles-notvalid/4");
+                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/basic-authentication-dummy/special-double-roles-notvalid/4");
 
                     Assert.IsFalse(response.Result.IsSuccessStatusCode);
                     Assert.AreEqual(HttpStatusCode.Unauthorized, response.Result.StatusCode);
@@ -187,7 +187,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:1"));
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", cridentials);
-                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/dummy/special-double-roles-notvalid/4");
+                    Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/basic-authentication-dummy/special-double-roles-notvalid/4");
 
                     Assert.IsFalse(response.Result.IsSuccessStatusCode);
                     Assert.AreEqual(HttpStatusCode.Unauthorized, response.Result.StatusCode);

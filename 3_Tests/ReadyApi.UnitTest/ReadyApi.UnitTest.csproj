@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Alternatives, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Alternatives.1.0.6.4\lib\net45\Alternatives.dll</HintPath>
+    </Reference>
     <Reference Include="Autofac, Version=4.6.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.6.0\lib\net45\Autofac.dll</HintPath>
     </Reference>
@@ -94,9 +97,11 @@
   <ItemGroup>
     <Compile Include="BasicAuthenticationTest\AuthenticationChecker.cs" />
     <Compile Include="BasicAuthenticationTest\BasicAuthenticationFilterTest.cs" />
-    <Compile Include="BasicAuthenticationTest\DummyController.cs" />
+    <Compile Include="BasicAuthenticationTest\BasicAuthenticationDummyController.cs" />
     <Compile Include="BasicAuthenticationTest\UserRoleStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponseTest\ResponseTest.cs" />
+    <Compile Include="ResponseTest\ResponseTestDummyController.cs" />
     <Compile Include="StartupTest\WebApiConfigTest.cs" />
     <Compile Include="StartupTest\WebApiHealthCheckTest.cs" />
   </ItemGroup>

@@ -24,6 +24,8 @@ namespace ReadyApi.Handlers
         {
             BaseResponse errorResponse = new ErrorResponse();
 
+            context.Response = new HttpResponseMessage();
+
             if (context.Exception is FriendlyException friendlyException)
             {
                 _loggerMaestro.Info($"{friendlyException.FriendlyMessage} :{Environment.NewLine}" +
@@ -45,16 +47,13 @@ namespace ReadyApi.Handlers
             else
             {
                 _loggerMaestro.Error(context.Exception);
-                errorResponse.AddErrorMessage("Unexpected Error");
+                errorResponse.AddErrorMessage(context.Exception.Message);
                 context.Response.StatusCode = HttpStatusCode.InternalServerError;
-                context.Response.ReasonPhrase = "Unexpected Error";
+                context.Response.ReasonPhrase = context.Exception.Message;
             }
 
 
-            context.Response = new HttpResponseMessage()
-                               {
-                                   Content = new StringContent(errorResponse.Serialize())
-                               };
+            context.Response.Content = new StringContent(errorResponse.Serialize());
         }
     }
 }

@@ -2,8 +2,8 @@
 
 namespace ReadyApi.UnitTest.BasicAuthenticationTest
 {
-    [RoutePrefix("dummy")]
-    public class DummyController : ApiController
+    [RoutePrefix("basic-authentication-dummy")]
+    public class BasicAuthenticationDummyController : ApiController
     {
         [HttpGet]
         [Route("double/{parameter:int}")]

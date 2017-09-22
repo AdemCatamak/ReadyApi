@@ -69,15 +69,5 @@
     <None Include="packages.config" />
     <None Include="ReadyApi.Host.nuspec" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ReadyApi\ReadyApi.csproj">
-      <Project>{E79FED8A-24B5-4E27-85C1-891DB2952E77}</Project>
-      <Name>ReadyApi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\3_Tests\ReadyApi.UnitTest\ReadyApi.UnitTest.csproj">
-      <Project>{55A3681B-6545-4F7C-A113-E3CA436534B8}</Project>
-      <Name>ReadyApi.UnitTest</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

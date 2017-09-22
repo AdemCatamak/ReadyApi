@@ -42,6 +42,7 @@
       <frameworkAssembly assemblyName="System.Web" />
       <frameworkAssembly assemblyName="System.Web.Http" />
       <frameworkAssembly assemblyName="System.Net" />
+      <frameworkAssembly assemblyName="System.Net.Http" />
     </frameworkAssemblies>
 
   </metadata>

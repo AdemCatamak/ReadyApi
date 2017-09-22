@@ -18,6 +18,7 @@
 
     <dependencies>
       <dependency id="Microsoft.Owin" version="3.1.0" />
+      <dependency id="Microsoft.Owin.Host.HttpListener" version="3.1.0" />
       <dependency id="Microsoft.Owin.Hosting" version="3.1.0" />
       <dependency id="Owin" version="1.0" />
     </dependencies>

@@ -32,6 +32,7 @@ namespace ReadyApi.Handlers
                                     $"{friendlyException.InnerException}");
 
                 errorResponse.AddErrorMessage(friendlyException.FriendlyMessage);
+
                 context.Response.StatusCode = HttpStatusCode.BadRequest;
                 context.Response.ReasonPhrase = friendlyException.FriendlyMessage;
             }
@@ -41,16 +42,18 @@ namespace ReadyApi.Handlers
                                        $"{businessException.InnerException}");
 
                 errorResponse.AddErrorMessage(businessException.ErrorMessage);
+
                 context.Response.StatusCode = HttpStatusCode.InternalServerError;
                 context.Response.ReasonPhrase = businessException.ErrorMessage;
             }
             else
             {
                 _loggerMaestro.Error(context.Exception.Message, context.Exception);
+
                 errorResponse.AddErrorMessage("Unexpected Error");
 
                 context.Response.StatusCode = HttpStatusCode.InternalServerError;
-                context.Response.ReasonPhrase = context.Exception.Message;
+                context.Response.ReasonPhrase = "Unexpected Error";
             }
 
 

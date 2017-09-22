@@ -1,7 +1,6 @@
 ﻿using System.Web.Http;
 using Newtonsoft.Json;
 using Owin;
-using ReadyApi.UnitTest.BasicAuthenticationTest;
 
 namespace ReadyApi.UnitTest.GeneralExeptionHandlerTest
 {

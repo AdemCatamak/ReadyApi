@@ -1,10 +1,8 @@
-﻿using System;
-using System.Web.Http;
-using ReadyApi.Model.CustomExceptions;
+﻿using System.Web.Http;
 
 namespace ReadyApi.UnitTest.BasicAuthenticationTest
 {
-    [RoutePrefix("dummy")]
+    [RoutePrefix("basic-authentication-dummy")]
     public class BasicAuthenticationDummyController : ApiController
     {
         [HttpGet]

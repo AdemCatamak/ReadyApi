@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
 
 <package>
-
   <metadata>
-    <id>ReadyApi.Model</id>
-    <version>1.0.3</version>
-    <title>ReadyApi.Model</title>
+    <id>ReadyApi.Host</id>
+    <version>1.0.1</version>
+    <title>ReadyApi.Host</title>
     <authors>Adem Catamak</authors>
     <owners>Adem Catamak</owners>
     <licenseUrl><![CDATA[https://github.com/AdemCatamak/ReadyApi/blob/master/LICENSE]]></licenseUrl>
@@ -15,21 +14,27 @@
     <description>Basic Api Requirements with Owin</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2017</copyright>
-    <tags>ReadyApi.Model</tags>
+    <tags>api, basic requirements</tags>
 
     <dependencies>
+      <dependency id="Microsoft.Owin" version="3.1.0" />
+      <dependency id="Microsoft.Owin.Hosting" version="3.1.0" />
+      <dependency id="Owin" version="1.0" />
     </dependencies>
 
-
     <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Configuration" />
+
       <frameworkAssembly assemblyName="System.Web" />
       <frameworkAssembly assemblyName="System.Web.Http" />
       <frameworkAssembly assemblyName="System.Net" />
     </frameworkAssemblies>
 
   </metadata>
-
   <files>
-    <file src="bin\Release\ReadyApi.Model.dll" target="lib\net45"></file>
+    <file src="bin\Release\ReadyApi.Host.dll" target="lib\net45"></file>
+    <file src="bin\Release\Content\app.config.install.xdt" target="content"></file>
+    <file src="bin\Release\Content\web.config.install.xdt" target="content"></file>
+    <file src="bin\Release\Content\Program.cs.pp" target="content"></file>
   </files>
 </package>

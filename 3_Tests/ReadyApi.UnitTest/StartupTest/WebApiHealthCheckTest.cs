@@ -14,7 +14,7 @@ namespace ReadyApi.UnitTest.StartupTest
         [Test]
         public void CheckHealth()
         {
-            using (WebApp.Start(_baseAddress, Startup.Configuration))
+            using (WebApp.Start<Startup>(_baseAddress))
             {
                 using (HttpClient client = new HttpClient())
                 {

@@ -9,7 +9,6 @@ using NUnit.Framework;
 
 namespace ReadyApi.UnitTest.BasicAuthenticationTest
 {
-    
     public class BasicAuthenticationFilterTest
     {
         private readonly string _baseAddress = "http://localhost:9000/";
@@ -17,10 +16,8 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__NotAuthenticate()
         {
-            using (WebApp.Start(_baseAddress, Startup.Configuration))
+            using (WebApp.Start<Startup>(_baseAddress))
             {
-                Startup.UseBasicAuthentication(new AuthenticationChecker());
-
                 using (HttpClient client = new HttpClient())
                 {
                     Task<HttpResponseMessage> response = client.GetAsync($"{_baseAddress}/dummy/double/4");
@@ -35,11 +32,8 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateSuccess_GeneralUser()
         {
-            using (WebApp.Start(_baseAddress, Startup.Configuration))
+            using (WebApp.Start<Startup>(_baseAddress))
             {
-                Startup.UseBasicAuthentication(new AuthenticationChecker());
-
-
                 using (HttpClient client = new HttpClient())
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:1"));
@@ -56,11 +50,8 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_GeneralUser()
         {
-            using (WebApp.Start(_baseAddress, Startup.Configuration))
+            using (WebApp.Start<Startup>(_baseAddress))
             {
-                Startup.UseBasicAuthentication(new AuthenticationChecker());
-
-
                 using (HttpClient client = new HttpClient())
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:2"));
@@ -77,11 +68,8 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateSuccess_SpecialUser_OnlyOneRole()
         {
-            using (WebApp.Start(_baseAddress, Startup.Configuration))
+            using (WebApp.Start<Startup>(_baseAddress))
             {
-                Startup.UseBasicAuthentication(new AuthenticationChecker(), new UserRoleStore());
-
-
                 using (HttpClient client = new HttpClient())
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:1"));
@@ -97,11 +85,8 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_OnlyOneRole_WrongPassword()
         {
-            using (WebApp.Start(_baseAddress, Startup.Configuration))
+            using (WebApp.Start<Startup>(_baseAddress))
             {
-                Startup.UseBasicAuthentication(new AuthenticationChecker(), new UserRoleStore());
-
-
                 using (HttpClient client = new HttpClient())
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:2"));
@@ -117,11 +102,8 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_OnlyOneRole_NotValidRole()
         {
-            using (WebApp.Start(_baseAddress, Startup.Configuration))
+            using (WebApp.Start<Startup>(_baseAddress))
             {
-                Startup.UseBasicAuthentication(new AuthenticationChecker(), new UserRoleStore());
-
-
                 using (HttpClient client = new HttpClient())
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:1"));
@@ -138,11 +120,8 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateSuccess_SpecialUser_MultipleRole()
         {
-            using (WebApp.Start(_baseAddress, Startup.Configuration))
+            using (WebApp.Start<Startup>(_baseAddress))
             {
-                Startup.UseBasicAuthentication(new AuthenticationChecker(), new UserRoleStore());
-
-
                 using (HttpClient client = new HttpClient())
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:1"));
@@ -158,11 +137,8 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_MultipleRole_WrongPassword()
         {
-            using (WebApp.Start(_baseAddress, Startup.Configuration))
+            using (WebApp.Start<Startup>(_baseAddress))
             {
-                Startup.UseBasicAuthentication(new AuthenticationChecker(), new UserRoleStore());
-
-
                 using (HttpClient client = new HttpClient())
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:2"));
@@ -178,11 +154,8 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_MultipleRole_NotValid()
         {
-            using (WebApp.Start(_baseAddress, Startup.Configuration))
+            using (WebApp.Start<Startup>(_baseAddress))
             {
-                Startup.UseBasicAuthentication(new AuthenticationChecker(), new UserRoleStore());
-
-
                 using (HttpClient client = new HttpClient())
                 {
                     string cridentials = Convert.ToBase64String(Encoding.ASCII.GetBytes("adem:1"));

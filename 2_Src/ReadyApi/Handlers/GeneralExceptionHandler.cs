@@ -2,16 +2,15 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;
-using Alternatives.CustomExceptions;
 using Alternatives.Extensions;
-using Autofac.Integration.WebApi;
 using RapidLogger;
+using ReadyApi.Model.CustomExceptions;
 using ReadyApi.Model.Responses;
 using ReadyApi.Model.Responses.Imp;
 
 namespace ReadyApi.Handlers
 {
-    public class GeneralExceptionHandler : ExceptionFilterAttribute, IAutofacExceptionFilter
+    public class GeneralExceptionHandler : ExceptionFilterAttribute//, IAutofacExceptionFilter
     {
         private readonly LoggerMaestro _loggerMaestro;
 

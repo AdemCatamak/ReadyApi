@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using Microsoft.Owin.Hosting;
-using ReadyApi;
 
 namespace $rootnamespace$
 {
@@ -11,7 +10,7 @@ namespace $rootnamespace$
         {
             string baseAddress = ConfigurationManager.AppSettings["BaseAddress"];
 
-            using (WebApp.Start(baseAddress, Startup.Configuration))
+            using (WebApp.Start<Startup>(baseAddress))
             {
                 Console.WriteLine("Press 'E' for exit");
                 string read;

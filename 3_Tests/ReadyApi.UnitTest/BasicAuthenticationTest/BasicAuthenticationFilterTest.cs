@@ -16,7 +16,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__NotAuthenticate()
         {
-            using (WebApp.Start<Startup>(_baseAddress))
+            using (WebApp.Start<BasicAuthenticationStartup>(_baseAddress))
             {
                 using (HttpClient client = new HttpClient())
                 {
@@ -32,7 +32,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateSuccess_GeneralUser()
         {
-            using (WebApp.Start<Startup>(_baseAddress))
+            using (WebApp.Start<BasicAuthenticationStartup>(_baseAddress))
             {
                 using (HttpClient client = new HttpClient())
                 {
@@ -50,7 +50,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_GeneralUser()
         {
-            using (WebApp.Start<Startup>(_baseAddress))
+            using (WebApp.Start<BasicAuthenticationStartup>(_baseAddress))
             {
                 using (HttpClient client = new HttpClient())
                 {
@@ -68,7 +68,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateSuccess_SpecialUser_OnlyOneRole()
         {
-            using (WebApp.Start<Startup>(_baseAddress))
+            using (WebApp.Start<BasicAuthenticationStartup>(_baseAddress))
             {
                 using (HttpClient client = new HttpClient())
                 {
@@ -85,7 +85,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_OnlyOneRole_WrongPassword()
         {
-            using (WebApp.Start<Startup>(_baseAddress))
+            using (WebApp.Start<BasicAuthenticationStartup>(_baseAddress))
             {
                 using (HttpClient client = new HttpClient())
                 {
@@ -102,7 +102,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_OnlyOneRole_NotValidRole()
         {
-            using (WebApp.Start<Startup>(_baseAddress))
+            using (WebApp.Start<BasicAuthenticationStartup>(_baseAddress))
             {
                 using (HttpClient client = new HttpClient())
                 {
@@ -120,7 +120,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateSuccess_SpecialUser_MultipleRole()
         {
-            using (WebApp.Start<Startup>(_baseAddress))
+            using (WebApp.Start<BasicAuthenticationStartup>(_baseAddress))
             {
                 using (HttpClient client = new HttpClient())
                 {
@@ -137,7 +137,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_MultipleRole_WrongPassword()
         {
-            using (WebApp.Start<Startup>(_baseAddress))
+            using (WebApp.Start<BasicAuthenticationStartup>(_baseAddress))
             {
                 using (HttpClient client = new HttpClient())
                 {
@@ -154,7 +154,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Test]
         public void AdemCatamak_Api_Test__BasicAuthenticationFilterTest__AuthenticateFail_SpecialUser_MultipleRole_NotValid()
         {
-            using (WebApp.Start<Startup>(_baseAddress))
+            using (WebApp.Start<BasicAuthenticationStartup>(_baseAddress))
             {
                 using (HttpClient client = new HttpClient())
                 {

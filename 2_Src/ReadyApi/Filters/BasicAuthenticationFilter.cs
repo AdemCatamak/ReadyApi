@@ -61,10 +61,10 @@ namespace ReadyApi.Filters
             string userName = userNameAndPasword.Item1;
             string password = userNameAndPasword.Item2;
 
-            bool hasUserRight = _authenticationChecker.Check(userName, password);
-
             IPrincipal principal = null;
 
+            bool hasUserRight = _authenticationChecker.Check(userName, password);
+            
             if (hasUserRight)
             {
                 string[] roles = { };

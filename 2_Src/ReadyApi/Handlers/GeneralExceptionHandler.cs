@@ -10,7 +10,7 @@ using ReadyApi.Model.Responses.Imp;
 
 namespace ReadyApi.Handlers
 {
-    public class GeneralExceptionHandler : ExceptionFilterAttribute//, IAutofacExceptionFilter
+    public class GeneralExceptionHandler : ExceptionFilterAttribute
     {
         private readonly LoggerMaestro _loggerMaestro;
 
@@ -22,6 +22,7 @@ namespace ReadyApi.Handlers
         public override void OnException(HttpActionExecutedContext context)
         {
             BaseResponse errorResponse = new ErrorResponse();
+            context.Response = new HttpResponseMessage();
 
             if (context.Exception is FriendlyException friendlyException)
             {
@@ -43,17 +44,14 @@ namespace ReadyApi.Handlers
             }
             else
             {
-                _loggerMaestro.Error(context.Exception);
+                _loggerMaestro.Error(context.Exception.Message, context.Exception);
                 errorResponse.AddErrorMessage("Unexpected Error");
                 context.Response.StatusCode = HttpStatusCode.InternalServerError;
                 context.Response.ReasonPhrase = "Unexpected Error";
             }
 
 
-            context.Response = new HttpResponseMessage()
-                               {
-                                   Content = new StringContent(errorResponse.Serialize())
-                               };
+            context.Response.Content = new StringContent(errorResponse.Serialize());
         }
     }
 }

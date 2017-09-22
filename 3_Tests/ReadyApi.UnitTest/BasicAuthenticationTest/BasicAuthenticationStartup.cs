@@ -1,11 +1,10 @@
 ﻿using System.Web.Http;
 using Newtonsoft.Json;
 using Owin;
-using ReadyApi.UnitTest.BasicAuthenticationTest;
 
-namespace ReadyApi.UnitTest
+namespace ReadyApi.UnitTest.BasicAuthenticationTest
 {
-    public class Startup
+    public class BasicAuthenticationStartup
     {
         public void Configuration(IAppBuilder appBuilder)
         {

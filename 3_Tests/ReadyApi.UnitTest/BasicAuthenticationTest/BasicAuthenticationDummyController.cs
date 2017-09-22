@@ -26,6 +26,7 @@ namespace ReadyApi.UnitTest.BasicAuthenticationTest
         [Route("special-double-role2/{parameter:int}")]
         [Authorize(Roles = "role2")]
         public int TwiceSingleSpecialNotValid([FromUri] int parameter)
+
         {
             return parameter * 2;
         }

@@ -2,16 +2,15 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;
-using Alternatives.CustomExceptions;
 using Alternatives.Extensions;
-using Autofac.Integration.WebApi;
 using RapidLogger;
+using ReadyApi.Model.CustomExceptions;
 using ReadyApi.Model.Responses;
 using ReadyApi.Model.Responses.Imp;
 
 namespace ReadyApi.Handlers
 {
-    public class GeneralExceptionHandler : ExceptionFilterAttribute, IAutofacExceptionFilter
+    public class GeneralExceptionHandler : ExceptionFilterAttribute
     {
         private readonly LoggerMaestro _loggerMaestro;
 
@@ -23,6 +22,7 @@ namespace ReadyApi.Handlers
         public override void OnException(HttpActionExecutedContext context)
         {
             BaseResponse errorResponse = new ErrorResponse();
+            context.Response = new HttpResponseMessage();
 
             context.Response = new HttpResponseMessage();
 
@@ -46,8 +46,9 @@ namespace ReadyApi.Handlers
             }
             else
             {
-                _loggerMaestro.Error(context.Exception);
-                errorResponse.AddErrorMessage(context.Exception.Message);
+                _loggerMaestro.Error(context.Exception.Message, context.Exception);
+                errorResponse.AddErrorMessage("Unexpected Error");
+
                 context.Response.StatusCode = HttpStatusCode.InternalServerError;
                 context.Response.ReasonPhrase = context.Exception.Message;
             }

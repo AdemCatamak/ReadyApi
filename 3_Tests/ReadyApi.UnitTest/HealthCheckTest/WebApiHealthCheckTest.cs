@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
 using NUnit.Framework;
 
-namespace ReadyApi.UnitTest.StartupTest
+namespace ReadyApi.UnitTest.HealthCheckTest
 {
     
     public class WebApiHealthCheckTest
@@ -14,7 +14,7 @@ namespace ReadyApi.UnitTest.StartupTest
         [Test]
         public void CheckHealth()
         {
-            using (WebApp.Start(_baseAddress, Startup.Configuration))
+            using (WebApp.Start<HealthCheckStartup>(_baseAddress))
             {
                 using (HttpClient client = new HttpClient())
                 {

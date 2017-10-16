@@ -11,13 +11,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Filters;
-using Alternatives.Extensions;
 using ReadyApi.Model;
-using ReadyApi.Model.Responses.Imp;
 
 namespace ReadyApi.Filters
 {
-    internal class BasicAuthenticationFilter : IAuthenticationFilter
+    public class BasicAuthenticationFilter : IAuthenticationFilter
     {
         private readonly IAuthenticationChecker _authenticationChecker;
         private readonly IUserRoleStore _userRoleStore;
@@ -30,32 +28,32 @@ namespace ReadyApi.Filters
 
         public bool AllowMultiple => false;
 
-        public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
+        public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
             HttpRequestMessage request = context.Request;
             AuthenticationHeaderValue authorization = request.Headers.Authorization;
 
             if (authorization == null)
             {
-                return;
+                return Task.FromResult(0);
             }
 
             if (authorization.Scheme != "Basic")
             {
-                return;
+                return Task.FromResult(0);
             }
 
             if (string.IsNullOrEmpty(authorization.Parameter))
             {
                 context.ErrorResult = new AuthenticationFailureResult("Missing credentials", request);
-                return;
+                return Task.FromResult(0);
             }
 
             Tuple<string, string> userNameAndPasword = ExtractUserNameAndPassword(authorization.Parameter);
             if (userNameAndPasword == null)
             {
                 context.ErrorResult = new AuthenticationFailureResult("Invalid credentials", request);
-                return;
+                return Task.FromResult(0);
             }
 
             string userName = userNameAndPasword.Item1;
@@ -64,7 +62,7 @@ namespace ReadyApi.Filters
             IPrincipal principal = null;
 
             bool hasUserRight = _authenticationChecker.Check(userName, password);
-            
+
             if (hasUserRight)
             {
                 string[] roles = { };
@@ -73,7 +71,7 @@ namespace ReadyApi.Filters
                 if (_userRoleStore != null)
                 {
                     IEnumerable<string> roleInfo = _userRoleStore.GetRoles(userName);
-                    roles = roleInfo?.ToArray() ?? new string[]{};
+                    roles = roleInfo?.ToArray() ?? new string[] { };
 
                     foreach (string role in roles)
                     {
@@ -87,10 +85,12 @@ namespace ReadyApi.Filters
             if (principal == null)
             {
                 context.ErrorResult = new AuthenticationFailureResult("Invalid username or password", request);
-                return;
+                return Task.FromResult(0);
             }
 
             context.Principal = principal;
+
+            return Task.FromResult(0);
         }
 
 
@@ -160,15 +160,10 @@ namespace ReadyApi.Filters
 
             private HttpResponseMessage Execute()
             {
-                ErrorResponse errorResponse = new ErrorResponse();
-                errorResponse.AddErrorMessage(_reasonPhrase);
-                                             
-
                 HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized)
                                                {
                                                    RequestMessage = _request,
                                                    ReasonPhrase = _reasonPhrase,
-                                                   Content = new StringContent(errorResponse.Serialize())
                                                };
                 return response;
             }

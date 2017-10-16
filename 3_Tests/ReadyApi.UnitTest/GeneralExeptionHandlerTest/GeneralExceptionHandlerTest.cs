@@ -1,11 +1,8 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Alternatives.Extensions;
 using Microsoft.Owin.Hosting;
 using NUnit.Framework;
-using ReadyApi.Model.Responses.Imp;
 
 namespace ReadyApi.UnitTest.GeneralExeptionHandlerTest
 {
@@ -26,11 +23,6 @@ namespace ReadyApi.UnitTest.GeneralExeptionHandlerTest
                     Assert.IsFalse(rawResponse.Result.IsSuccessStatusCode);
                     Assert.AreEqual(HttpStatusCode.BadRequest,rawResponse.Result.StatusCode);
                     Assert.AreEqual(message, rawResponse.Result.ReasonPhrase);
-
-                    string responseContent = rawResponse.Result.Content.ReadAsStringAsync().Result;
-
-                    ErrorResponse errorResponse = responseContent.Deserialize<ErrorResponse>();
-                    Assert.AreEqual(message, errorResponse.MessageList.First().Content);
                 }
             }
         }
@@ -48,11 +40,6 @@ namespace ReadyApi.UnitTest.GeneralExeptionHandlerTest
                     Assert.IsFalse(rawResponse.Result.IsSuccessStatusCode);
                     Assert.AreEqual(HttpStatusCode.InternalServerError,rawResponse.Result.StatusCode);
                     Assert.AreEqual(message, rawResponse.Result.ReasonPhrase);
-
-                    string responseContent = rawResponse.Result.Content.ReadAsStringAsync().Result;
-
-                    ErrorResponse errorResponse = responseContent.Deserialize<ErrorResponse>();
-                    Assert.AreEqual(message, errorResponse.MessageList.First().Content);
                 }
             }
         }
@@ -70,11 +57,6 @@ namespace ReadyApi.UnitTest.GeneralExeptionHandlerTest
                     Assert.IsFalse(rawResponse.Result.IsSuccessStatusCode);
                     Assert.AreEqual(HttpStatusCode.InternalServerError, rawResponse.Result.StatusCode);
                     Assert.AreEqual("Unexpected Error", rawResponse.Result.ReasonPhrase);
-
-                    string responseContent = rawResponse.Result.Content.ReadAsStringAsync().Result;
-
-                    ErrorResponse errorResponse = responseContent.Deserialize<ErrorResponse>();
-                    Assert.AreEqual("Unexpected Error", errorResponse.MessageList.First().Content);
                 }
             }
         }

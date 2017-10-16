@@ -53,12 +53,9 @@
     <Compile Include="IAuthenticationChecker.cs" />
     <Compile Include="IUserStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Responses\BaseResponse.cs" />
-    <Compile Include="Responses\Imp\ErrorResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ReadyApi.Model.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

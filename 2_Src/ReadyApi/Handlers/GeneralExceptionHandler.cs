@@ -2,7 +2,9 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;
+using Alternatives.Extensions;
 using RapidLogger;
+using ReadyApi.Model;
 using ReadyApi.Model.CustomExceptions;
 
 namespace ReadyApi.Handlers
@@ -19,14 +21,14 @@ namespace ReadyApi.Handlers
         public override void OnException(HttpActionExecutedContext context)
         {
             context.Response = new HttpResponseMessage();
-
+            ErrorResponse errorResponse = new ErrorResponse();
             if (context.Exception is FriendlyException friendlyException)
             {
                 _loggerMaestro.Info($"{friendlyException.FriendlyMessage} :{Environment.NewLine}" +
                                     $"{friendlyException.InnerException}");
 
                 context.Response.StatusCode = HttpStatusCode.BadRequest;
-                context.Response.ReasonPhrase = friendlyException.FriendlyMessage;
+                errorResponse.AddError(friendlyException.FriendlyMessage);
             }
             else if (context.Exception is BusinessException businessException)
             {
@@ -34,15 +36,21 @@ namespace ReadyApi.Handlers
                                        $"{businessException.InnerException}");
 
                 context.Response.StatusCode = HttpStatusCode.InternalServerError;
-                context.Response.ReasonPhrase = businessException.ErrorMessage;
+                errorResponse.AddError(businessException.ErrorMessage);
             }
             else
             {
                 _loggerMaestro.Error(context.Exception.Message, context.Exception);
 
                 context.Response.StatusCode = HttpStatusCode.InternalServerError;
-                context.Response.ReasonPhrase = "Unexpected Error";
+                errorResponse.AddError("Unexpected Error");
             }
+
+            context.Response.Content = new StringContent(errorResponse.Serialize());
+        }
+
+        private class ErrorResponse : BaseResponse
+        {
         }
     }
 }

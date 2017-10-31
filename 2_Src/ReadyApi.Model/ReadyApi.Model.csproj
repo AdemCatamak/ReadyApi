@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseResponse.cs" />
     <Compile Include="CustomExceptions\BusinessException.cs" />
     <Compile Include="CustomExceptions\FriendlyException.cs" />
     <Compile Include="Enumaration\MessageTypes.cs" />

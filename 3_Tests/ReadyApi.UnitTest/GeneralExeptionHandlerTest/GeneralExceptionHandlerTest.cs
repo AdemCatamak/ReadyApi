@@ -1,13 +1,18 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Alternatives.Extensions;
 using Microsoft.Owin.Hosting;
 using NUnit.Framework;
+using ReadyApi.Model;
 
 namespace ReadyApi.UnitTest.GeneralExeptionHandlerTest
 {
     public class GeneralExceptionHandlerTest
     {
+        private class BasicResponse : BaseResponse { }
+
         private readonly string _baseAddress = "http://localhost:9000/";
 
         [Test]
@@ -22,7 +27,8 @@ namespace ReadyApi.UnitTest.GeneralExeptionHandlerTest
 
                     Assert.IsFalse(rawResponse.Result.IsSuccessStatusCode);
                     Assert.AreEqual(HttpStatusCode.BadRequest,rawResponse.Result.StatusCode);
-                    Assert.AreEqual(message, rawResponse.Result.ReasonPhrase);
+                    BaseResponse response = rawResponse.Result.Content.ReadAsStringAsync().Result.Deserialize<BasicResponse>();
+                    Assert.AreEqual(message, response.Messages.First().MessageContent);
                 }
             }
         }
@@ -39,7 +45,8 @@ namespace ReadyApi.UnitTest.GeneralExeptionHandlerTest
 
                     Assert.IsFalse(rawResponse.Result.IsSuccessStatusCode);
                     Assert.AreEqual(HttpStatusCode.InternalServerError,rawResponse.Result.StatusCode);
-                    Assert.AreEqual(message, rawResponse.Result.ReasonPhrase);
+                    BaseResponse response = rawResponse.Result.Content.ReadAsStringAsync().Result.Deserialize<BasicResponse>();
+                    Assert.AreEqual(message, response.Messages.First().MessageContent);
                 }
             }
         }
@@ -56,7 +63,8 @@ namespace ReadyApi.UnitTest.GeneralExeptionHandlerTest
 
                     Assert.IsFalse(rawResponse.Result.IsSuccessStatusCode);
                     Assert.AreEqual(HttpStatusCode.InternalServerError, rawResponse.Result.StatusCode);
-                    Assert.AreEqual("Unexpected Error", rawResponse.Result.ReasonPhrase);
+                    BaseResponse response = rawResponse.Result.Content.ReadAsStringAsync().Result.Deserialize<BasicResponse>();
+                    Assert.AreEqual("Unexpected Error", response.Messages.First().MessageContent);
                 }
             }
         }

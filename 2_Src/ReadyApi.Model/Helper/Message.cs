@@ -4,13 +4,13 @@ namespace ReadyApi.Model.Helper
 {
     public class Message
     {
-        public Message(MessageTypes type, string content)
+        public string MessageContent { get; set; }
+        public MessageTypes Type { get; set; }
+
+        public Message(MessageTypes type, string message)
         {
             Type = type;
-            Content = content;
+            MessageContent = message;
         }
-
-        public MessageTypes Type { get; private set; }
-        public string Content { get; private set; }
     }
 }

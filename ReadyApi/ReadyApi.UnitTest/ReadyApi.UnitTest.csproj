@@ -102,17 +102,20 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\2_Src\ReadyApi.Model\ReadyApi.Model.csproj">
+    <ProjectReference Include="..\ReadyApi.Model\ReadyApi.Model.csproj">
       <Project>{081CFA9F-CE94-492B-B0BD-39B4FAE98A3F}</Project>
       <Name>ReadyApi.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\2_Src\ReadyApi\ReadyApi.csproj">
+    <ProjectReference Include="..\ReadyApi\ReadyApi.csproj">
       <Project>{E79FED8A-24B5-4E27-85C1-891DB2952E77}</Project>
       <Name>ReadyApi</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENCE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

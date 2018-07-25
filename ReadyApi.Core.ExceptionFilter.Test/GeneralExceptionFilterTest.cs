@@ -6,7 +6,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using ReadyApi.Core.ExceptionFilter.Response;
+using ReadyApi.Common.Model;
 using RestSharp;
 using Xunit;
 

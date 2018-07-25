@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ReadyApi.Core.ExceptionFilter.Response
+namespace ReadyApi.Common.Model
 {
     public class BasicErrorResponse
     {

@@ -4,7 +4,7 @@ using Alternatives.CustomExceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
-using ReadyApi.Core.ExceptionFilter.Response;
+using ReadyApi.Common.Model;
 
 namespace ReadyApi.Core.ExceptionFilter
 {

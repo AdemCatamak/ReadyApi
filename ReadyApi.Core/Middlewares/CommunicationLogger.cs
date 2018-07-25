@@ -66,7 +66,7 @@ namespace ReadyApi.Core.Middlewares
 
         private void Log(string message, LogLevel logLevel)
         {
-            switch (_options.LogLevel)
+            switch (logLevel)
             {
                 case LogLevel.Trace:
                     _logger.LogTrace(message);

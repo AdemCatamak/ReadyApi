@@ -25,7 +25,7 @@ namespace ReadyApi.Core.Test.Middlewares
 
             webHost.Start();
 
-            using (HttpClient client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUrl);
 
@@ -50,7 +50,7 @@ namespace ReadyApi.Core.Test.Middlewares
 
             webHost.Start();
 
-            using (HttpClient client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUrl);
 
@@ -72,7 +72,7 @@ namespace ReadyApi.Core.Test.Middlewares
 
             public void Configure(IApplicationBuilder app)
             {
-                app.UseInsecureProtocol(new InsecureProtocolOptions() { InsecureProtocolAllowed = true });
+                app.UseInsecureProtocol(new InsecureProtocolMiddlewareOptions() { InsecureProtocolAllowed = true });
 
                 app.UseCors(option => option.WithOrigins("*")
                                             .AllowAnyHeader()
@@ -93,7 +93,7 @@ namespace ReadyApi.Core.Test.Middlewares
 
             public void Configure(IApplicationBuilder app)
             {
-                app.UseInsecureProtocol(new InsecureProtocolOptions() { InsecureProtocolAllowed = false });
+                app.UseInsecureProtocol(new InsecureProtocolMiddlewareOptions() { InsecureProtocolAllowed = false });
 
                 app.UseCors(option => option.WithOrigins("*")
                                             .AllowAnyHeader()

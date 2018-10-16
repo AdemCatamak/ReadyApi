@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,12 +14,12 @@ using Xunit;
 
 namespace ReadyApi.Core.Test.Middlewares
 {
-    public class CommunicationLoggerTest : IDisposable
+    public class ProcessTimeWatcherTest : IDisposable
     {
-        const string baseUrl = "http://localhost:5008";
+        const string baseUrl = "http://localhost:5009";
         private readonly IWebHost _webHost;
 
-        public CommunicationLoggerTest()
+        public ProcessTimeWatcherTest()
         {
             _webHost = WebHost.CreateDefaultBuilder(null)
                               .UseStartup<Startup>()
@@ -30,26 +31,26 @@ namespace ReadyApi.Core.Test.Middlewares
         }
 
         [Fact]
-        public void CommunicationLogger_WithoutOption()
+        public async Task ProcessTimeWatcher_Test()
         {
             HttpResponseMessage result;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUrl);
 
-                result = client.GetAsync("/health-check").Result;
+                result = await client.GetAsync("/health-check");
             }
 
             Assert.Equal(HttpStatusCode.OK, result.StatusCode);
             _logger.Verify(
                            m => m.Log(
-                                      LogLevel.Debug,
+                                      LogLevel.Trace,
                                       It.IsAny<EventId>(),
                                       It.Is<FormattedLogValues>(values => true),
                                       It.IsAny<Exception>(),
                                       It.IsAny<Func<object, Exception, string>>()
                                      ),
-                           Times.Exactly(2)
+                           Times.Once
                           );
         }
 
@@ -59,23 +60,22 @@ namespace ReadyApi.Core.Test.Middlewares
             _webHost?.Dispose();
         }
 
-        private static Mock<ILogger<CommunicationLoggerMiddleware>> _logger;
+        private static Mock<ILogger<ProcessTimeWatcherMiddleware>> _logger;
 
         private class Startup
         {
             public void ConfigureServices(IServiceCollection services)
             {
-                _logger = new Mock<ILogger<CommunicationLoggerMiddleware>>();
+                _logger = new Mock<ILogger<ProcessTimeWatcherMiddleware>>();
                 services.AddCors();
                 services.AddMvc();
             }
 
             public void Configure(IApplicationBuilder app)
             {
-                app.UseComminucationLogger(_logger.Object);
+                app.UseProcessTimeWatcherMiddleware(_logger.Object);
 
-                app.UseCors(option => option.WithOrigins("*")
-                                            .AllowAnyHeader()
+                app.UseCors(option => option.AllowAnyHeader()
                                             .AllowAnyMethod()
                                             .AllowAnyOrigin());
 

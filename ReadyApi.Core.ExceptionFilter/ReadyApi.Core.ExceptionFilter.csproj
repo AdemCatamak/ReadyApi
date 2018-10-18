@@ -7,15 +7,15 @@
     <RepositoryUrl>https://github.com/AdemCatamak/ReadyApi.Core</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/AdemCatamak/ReadyApi.Core/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>Adem Catamak</Authors>
-    <Version>1.1.0</Version>
+    <Version>1.1.1-pre</Version>
     <Description>General Exception Filter for Net Core</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Alternatives.CustomExceptions" Version="1.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.4" />
   </ItemGroup>
 
   <ItemGroup>

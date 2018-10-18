@@ -8,12 +8,13 @@
     <Company />
     <PackageLicenseUrl>https://github.com/AdemCatamak/ReadyApi.Core/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/AdemCatamak/ReadyApi.Core</RepositoryUrl>
-    <Version>1.0.4.3-pre</Version>
+    <Version>1.0.4.4-pre</Version>
     <Description>/health-check end point and / (redirect swagger) end point</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="2.5.0" />
   </ItemGroup>
 

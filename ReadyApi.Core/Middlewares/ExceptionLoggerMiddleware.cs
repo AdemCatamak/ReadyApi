@@ -1,10 +1,8 @@
 ﻿using System;
-using System.IO;
-using System.Text;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -30,42 +28,27 @@ namespace ReadyApi.Core.Middlewares
 
         public async Task Invoke(HttpContext httpContext)
         {
-            string correlationId = GetCorrelationId(httpContext);
             try
             {
                 await _next.Invoke(httpContext);
             }
             catch (Exception ex)
             {
-                string requestAsString;
-                try
-                {
-                    requestAsString = await FormatRequest(httpContext.Request);
-                }
-                catch (Exception e)
-                {
-                    requestAsString = string.Empty;
-                }
-
+                string correlationId = GetCorrelationId(httpContext);
+                string requestAsString = await httpContext.Request.Stringfy();
                 string message = $"[{nameof(ExceptionLoggerMiddleware)}] - {correlationId}{Environment.NewLine}" +
                                  $"Request = {requestAsString}{Environment.NewLine}" +
                                  $"Exception = {ex}";
 
                 _logger.Log(_middlewareOptions.LogLevel, message);
+
+                if (httpContext.Response.HasStarted)
+                    return;
+
+                httpContext.Response.Clear();
+                httpContext.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
+                await httpContext.Response.WriteAsync(ex.Message);
             }
-        }
-
-        private async Task<string> FormatRequest(HttpRequest request)
-        {
-            Stream body = request.Body;
-            request.EnableRewind();
-
-            var buffer = new byte[Convert.ToInt32(request.ContentLength)];
-            await request.Body.ReadAsync(buffer, 0, buffer.Length);
-            string bodyAsText = Encoding.UTF8.GetString(buffer);
-            request.Body = body;
-
-            return $"{request.Scheme} {request.Host}{request.Path} {request.QueryString} {bodyAsText}";
         }
     }
 

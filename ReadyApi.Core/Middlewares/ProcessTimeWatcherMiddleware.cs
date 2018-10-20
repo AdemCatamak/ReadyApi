@@ -39,8 +39,7 @@ namespace ReadyApi.Core.Middlewares
             finally
             {
                 watch.Stop();
-                long elapsedMs = watch.ElapsedMilliseconds;
-                _logger.Log(_options.LogLevel, $"[{nameof(ProcessTimeWatcherMiddleware)}] : [{endpointName}] - [{correlationId}] - {elapsedMs} Ms");
+                _logger.Log(_options.LogLevel, $"[{nameof(ProcessTimeWatcherMiddleware)}] : [{endpointName}] - [{correlationId}] - {watch.ElapsedMilliseconds} Ms");
             }
         }
     }

@@ -33,7 +33,7 @@ namespace ReadyApi.Core.Middlewares
                                         {
                                             if (_middlewareOptions.IncludeInResponseHeader)
                                             {
-                                                context.Response.Headers.Add(_middlewareOptions.Header, new[] {context.TraceIdentifier});
+                                                context.Response.Headers.Add(_middlewareOptions.Header, context.TraceIdentifier);
                                             }
 
                                             return Task.CompletedTask;
@@ -45,7 +45,7 @@ namespace ReadyApi.Core.Middlewares
 
     public class CorrelationIdMiddlewareOptions
     {
-        public const string DEFAULT_HEADER = "X-Correlation-Id";
+        public const string DEFAULT_HEADER = "x-correlation-id";
 
         public string Header { get; set; } = DEFAULT_HEADER;
 

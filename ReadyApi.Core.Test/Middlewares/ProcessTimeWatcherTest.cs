@@ -44,7 +44,7 @@ namespace ReadyApi.Core.Test.Middlewares
             Assert.Equal(HttpStatusCode.OK, result.StatusCode);
             _logger.Verify(
                            m => m.Log(
-                                      LogLevel.Trace,
+                                      LogLevel.Information,
                                       It.IsAny<EventId>(),
                                       It.Is<FormattedLogValues>(values => true),
                                       It.IsAny<Exception>(),

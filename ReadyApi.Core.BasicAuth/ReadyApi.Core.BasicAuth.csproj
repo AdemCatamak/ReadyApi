@@ -6,7 +6,7 @@
     <RepositoryUrl>https://github.com/AdemCatamak/ReadyApi.Core</RepositoryUrl>
     <Authors>Adem Catamak</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4.1-pre</Version>
+    <Version>1.0.5</Version>
     <Description>Basic Authentication Middleware For Net Core</Description>
   </PropertyGroup>
   <ItemGroup>

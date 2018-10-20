@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -50,7 +47,7 @@ namespace ReadyApi.Core.Middlewares
 
     public class ProcessTimeWatcherOptions
     {
-        public LogLevel LogLevel { get; set; } = LogLevel.Trace;
+        public LogLevel LogLevel { get; set; } = LogLevel.Information;
         public string CorrelationIdHeaderName { get; set; } = CorrelationIdMiddlewareOptions.DEFAULT_HEADER;
     }
 

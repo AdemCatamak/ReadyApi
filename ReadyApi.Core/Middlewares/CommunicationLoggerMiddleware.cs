@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Primitives;
 
 namespace ReadyApi.Core.Middlewares
 {
@@ -24,12 +23,14 @@ namespace ReadyApi.Core.Middlewares
             _logger = logger;
         }
 
+        public string GetCorrelationId(HttpContext httpContext)
+        {
+            return httpContext.TraceIdentifier;
+        }
+
         public async Task Invoke(HttpContext httpContext)
         {
-            if (!httpContext.Request.Headers.TryGetValue(_options.CorrelationIdHeaderName, out StringValues correlationId))
-            {
-                correlationId = Guid.NewGuid().ToString();
-            }
+            string correlationId = GetCorrelationId(httpContext);
 
             string requestAsString;
             try
@@ -38,7 +39,7 @@ namespace ReadyApi.Core.Middlewares
             }
             catch (Exception e)
             {
-                requestAsString = "Read error";
+                requestAsString = $"Read error [{e.Message}]";
             }
 
             string message = $"[{nameof(CommunicationLoggerMiddleware)}] : Request is arrived. Guid: {correlationId}{Environment.NewLine}{requestAsString}";
@@ -57,7 +58,7 @@ namespace ReadyApi.Core.Middlewares
                 }
                 catch (Exception e)
                 {
-                    responseAsString = "Read error";
+                    responseAsString = $"Read error [{e.Message}]";
                 }
 
                 message = $"[{nameof(CommunicationLoggerMiddleware)}] : Response is sent. Guid: {correlationId}{Environment.NewLine}{responseAsString})";

@@ -23,8 +23,14 @@ namespace ReadyApi.Core.Middlewares
             _logger = logger;
         }
 
+        public string GetCorrelationId(HttpContext httpContext)
+        {
+            return httpContext.TraceIdentifier;
+        }
+
         public async Task Invoke(HttpContext httpContext)
         {
+            string correlationId = GetCorrelationId(httpContext);
             try
             {
                 await _next.Invoke(httpContext);
@@ -41,7 +47,7 @@ namespace ReadyApi.Core.Middlewares
                     requestAsString = string.Empty;
                 }
 
-                string message = $"[{nameof(ExceptionLoggerMiddleware)}]{Environment.NewLine}" +
+                string message = $"[{nameof(ExceptionLoggerMiddleware)}] - {correlationId}{Environment.NewLine}" +
                                  $"Request = {requestAsString}{Environment.NewLine}" +
                                  $"Exception = {ex}";
 
@@ -66,7 +72,6 @@ namespace ReadyApi.Core.Middlewares
     public class ExceptionLoggerMiddlewareOptions
     {
         public LogLevel LogLevel { get; set; } = LogLevel.Error;
-        public string CorrelationIdHeaderName { get; set; } = CorrelationIdMiddlewareOptions.DEFAULT_HEADER;
     }
 
     public static class ExceptionLoggerMiddlewareExtensions

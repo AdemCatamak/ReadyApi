@@ -1,11 +1,9 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Primitives;
 
 namespace ReadyApi.Core.Middlewares
 {
@@ -22,13 +20,15 @@ namespace ReadyApi.Core.Middlewares
             _logger = logger;
         }
 
+        public string GetCorrelationId(HttpContext httpContext)
+        {
+            return httpContext.TraceIdentifier;
+        }
+
         public async Task Invoke(HttpContext httpContext)
         {
             string endpointName = httpContext.Request.Path;
-            if (!httpContext.Request.Headers.TryGetValue(_options.CorrelationIdHeaderName, out StringValues correlationId))
-            {
-                correlationId = Guid.NewGuid().ToString();
-            }
+            string correlationId = GetCorrelationId(httpContext);
 
             var watch = new Stopwatch();
             try
@@ -40,7 +40,7 @@ namespace ReadyApi.Core.Middlewares
             {
                 watch.Stop();
                 long elapsedMs = watch.ElapsedMilliseconds;
-                _logger.Log(_options.LogLevel, $"{nameof(ProcessTimeWatcherMiddleware)} : [{endpointName}] - [{correlationId}] - {elapsedMs} Ms");
+                _logger.Log(_options.LogLevel, $"[{nameof(ProcessTimeWatcherMiddleware)}] : [{endpointName}] - [{correlationId}] - {elapsedMs} Ms");
             }
         }
     }

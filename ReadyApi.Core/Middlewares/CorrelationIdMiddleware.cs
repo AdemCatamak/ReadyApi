@@ -31,7 +31,7 @@ namespace ReadyApi.Core.Middlewares
 
             context.Response.OnStarting(() =>
                                         {
-                                            if (_middlewareOptions.IncludeInResponse)
+                                            if (_middlewareOptions.IncludeInResponseHeader)
                                             {
                                                 context.Response.Headers.Add(_middlewareOptions.Header, new[] {context.TraceIdentifier});
                                             }
@@ -49,7 +49,7 @@ namespace ReadyApi.Core.Middlewares
 
         public string Header { get; set; } = DEFAULT_HEADER;
 
-        public bool IncludeInResponse { get; set; } = true;
+        public bool IncludeInResponseHeader { get; set; } = true;
     }
 
     public static class CorrelationIdMiddlewareExtensions

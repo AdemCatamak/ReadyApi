@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -40,7 +41,13 @@ namespace ReadyApi.Core.Middlewares
 
     public static class InsecureProtocolMiddlewareExtensions
     {
+        [Obsolete("UseInsecureProtocolMiddleware should be used")]
         public static void UseInsecureProtocol(this IApplicationBuilder app, InsecureProtocolMiddlewareOptions insecureProtocolMiddlewareOptions = null)
+        {
+            UseInsecureProtocolMiddleware(app, insecureProtocolMiddlewareOptions);
+        }
+
+        public static void UseInsecureProtocolMiddleware(this IApplicationBuilder app, InsecureProtocolMiddlewareOptions insecureProtocolMiddlewareOptions = null)
         {
             insecureProtocolMiddlewareOptions = insecureProtocolMiddlewareOptions ?? new InsecureProtocolMiddlewareOptions();
             app.UseMiddleware<InsecureProtocolManagerMiddleware>(Options.Create(insecureProtocolMiddlewareOptions));

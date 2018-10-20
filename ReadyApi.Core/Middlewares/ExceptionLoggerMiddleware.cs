@@ -76,7 +76,13 @@ namespace ReadyApi.Core.Middlewares
 
     public static class ExceptionLoggerMiddlewareExtensions
     {
+        [Obsolete("UseExceptionLoggerMiddleware extension fuction should be used")]
         public static void UseExceptionLogger(this IApplicationBuilder app, ILogger<ExceptionLoggerMiddleware> logger, ExceptionLoggerMiddlewareOptions exceptionLoggerMiddlewareOptions = null)
+        {
+            UseExceptionLoggerMiddleware(app, logger, exceptionLoggerMiddlewareOptions);
+        }
+
+        public static void UseExceptionLoggerMiddleware(this IApplicationBuilder app, ILogger<ExceptionLoggerMiddleware> logger, ExceptionLoggerMiddlewareOptions exceptionLoggerMiddlewareOptions = null)
         {
             exceptionLoggerMiddlewareOptions = exceptionLoggerMiddlewareOptions ?? new ExceptionLoggerMiddlewareOptions();
             app.UseMiddleware<ExceptionLoggerMiddleware>(logger, Options.Create(exceptionLoggerMiddlewareOptions));

@@ -96,12 +96,17 @@ namespace ReadyApi.Core.Middlewares
     public class CommunicationLoggerMiddlewareOptions
     {
         public LogLevel LogLevel { get; set; } = LogLevel.Debug;
-        public string CorrelationIdHeaderName { get; set; } = CorrelationIdMiddlewareOptions.DEFAULT_HEADER;
     }
 
     public static class CommunicationLoggerMiddlewareExtensions
     {
+        [Obsolete("UseComminucationLoggerMiddleware should be used")]
         public static void UseComminucationLogger(this IApplicationBuilder app, ILogger<CommunicationLoggerMiddleware> logger, CommunicationLoggerMiddlewareOptions communicationLoggerMiddlewareOptions = null)
+        {
+            UseComminucationLoggerMiddleware(app, logger, communicationLoggerMiddlewareOptions);
+        }
+
+        public static void UseComminucationLoggerMiddleware(this IApplicationBuilder app, ILogger<CommunicationLoggerMiddleware> logger, CommunicationLoggerMiddlewareOptions communicationLoggerMiddlewareOptions = null)
         {
             communicationLoggerMiddlewareOptions = communicationLoggerMiddlewareOptions ?? new CommunicationLoggerMiddlewareOptions();
             app.UseMiddleware<CommunicationLoggerMiddleware>(logger, Options.Create(communicationLoggerMiddlewareOptions));

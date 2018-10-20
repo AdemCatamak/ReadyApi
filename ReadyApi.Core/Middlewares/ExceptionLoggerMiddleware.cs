@@ -41,7 +41,8 @@ namespace ReadyApi.Core.Middlewares
                     requestAsString = string.Empty;
                 }
 
-                string message = $"Request = {requestAsString}{Environment.NewLine}" +
+                string message = $"[{nameof(ExceptionLoggerMiddleware)}]{Environment.NewLine}" +
+                                 $"Request = {requestAsString}{Environment.NewLine}" +
                                  $"Exception = {ex}";
 
                 _logger.Log(_middlewareOptions.LogLevel, message);

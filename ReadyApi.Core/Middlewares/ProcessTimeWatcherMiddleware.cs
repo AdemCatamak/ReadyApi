@@ -27,6 +27,7 @@ namespace ReadyApi.Core.Middlewares
 
         public async Task Invoke(HttpContext httpContext)
         {
+            string endpointName = httpContext.Request.Path;
             if (!httpContext.Request.Headers.TryGetValue(_options.CorrelationIdHeaderName, out StringValues correlationId))
             {
                 correlationId = Guid.NewGuid().ToString();
@@ -42,7 +43,7 @@ namespace ReadyApi.Core.Middlewares
             {
                 watch.Stop();
                 long elapsedMs = watch.ElapsedMilliseconds;
-                _logger.Log(_options.LogLevel, $"{correlationId} - {elapsedMs} Ms");
+                _logger.Log(_options.LogLevel, $"{nameof(ProcessTimeWatcherMiddleware)} : [{endpointName}] - [{correlationId}] - {elapsedMs} Ms");
             }
         }
     }

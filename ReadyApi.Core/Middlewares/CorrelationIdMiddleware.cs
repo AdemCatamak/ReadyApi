@@ -32,17 +32,17 @@ namespace ReadyApi.Core.Middlewares
                 context.TraceIdentifier = Guid.NewGuid().ToString();
             }
 
-            try
-            {
-                await _next.Invoke(context);
-            }
-            finally
-            {
-                if (_middlewareOptions.IncludeInResponse)
-                {
-                    context.Response.Headers.Add(_middlewareOptions.Header, new[] {context.TraceIdentifier});
-                }
-            }
+            context.Response.OnStarting(() =>
+                                        {
+                                            if (_middlewareOptions.IncludeInResponse)
+                                            {
+                                                context.Response.Headers.Add(_middlewareOptions.Header, new[] {context.TraceIdentifier});
+                                            }
+
+                                            return Task.CompletedTask;
+                                        });
+
+            await _next.Invoke(context);
         }
     }
 

@@ -41,7 +41,7 @@ namespace ReadyApi.Core.Middlewares
                 requestAsString = "Read error";
             }
 
-            string message = $"Request is arrived. Guid: {correlationId}{Environment.NewLine}{requestAsString}";
+            string message = $"[{nameof(CommunicationLoggerMiddleware)}] : Request is arrived. Guid: {correlationId}{Environment.NewLine}{requestAsString}";
             _logger.Log(_options.LogLevel, message);
 
             try
@@ -60,7 +60,7 @@ namespace ReadyApi.Core.Middlewares
                     responseAsString = "Read error";
                 }
 
-                message = $"Response is sent. Guid: {correlationId}{Environment.NewLine}{responseAsString})";
+                message = $"[{nameof(CommunicationLoggerMiddleware)}] : Response is sent. Guid: {correlationId}{Environment.NewLine}{responseAsString})";
                 _logger.Log(_options.LogLevel, message);
             }
         }

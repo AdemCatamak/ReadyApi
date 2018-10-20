@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.Swagger.Annotations;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace ReadyApi.Core.Controllers
 {

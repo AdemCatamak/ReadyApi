@@ -8,8 +8,9 @@
     <Company />
     <PackageLicenseUrl>https://github.com/AdemCatamak/ReadyApi.Core/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/AdemCatamak/ReadyApi.Core</RepositoryUrl>
-    <Version>1.0.5.3</Version>
-    <Description>/health-check end point and / (redirect swagger) end point</Description>
+    <Version>1.0.5.4</Version>
+    <Description>Project renamed as ReadyApi.AspNetCore.Controller and ReadyApi.AspNetCore.Middleware
+/health-check end point and / (redirect swagger) end point</Description>
   </PropertyGroup>
 
   <ItemGroup>

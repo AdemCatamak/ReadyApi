@@ -3,9 +3,5 @@ dotnet: 2.0
 script:
   - ./build.sh --nugetKey=$nugetKey --branchName=$TRAVIS_BRANCH
 
-branches:
-  only:
-  - master
-
 notifications:
   email: false

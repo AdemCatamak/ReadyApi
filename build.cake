@@ -72,20 +72,21 @@ Task(PackageStage)
 .IsDependentOn(TestStage)
 .Does(()=>
 {
+    // packages are created during build
 });
 
 Task(TestStage)
 .IsDependentOn(BuildStage)
 .Does(()=>
 {
-    // foreach (var testProject in TestProjects)
-    // {
-    //     var projectFiles = GetFiles(testProject);
-    //     foreach(var file in projectFiles)
-    //     {
-    //         DotNetCoreTest(file.FullPath);
-    //     }
-    // }
+    foreach (var testProject in TestProjects)
+    {
+        var projectFiles = GetFiles(testProject);
+        foreach(var file in projectFiles)
+        {
+            DotNetCoreTest(file.FullPath);
+        }
+    }
 });
 
 Task(BuildStage)

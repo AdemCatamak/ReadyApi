@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 
-namespace ReadyApi.AspCore.Middlewares
+namespace ReadyApi.AspNetCore.Middleware
 {
     public class CorrelationIdMiddleware
     {

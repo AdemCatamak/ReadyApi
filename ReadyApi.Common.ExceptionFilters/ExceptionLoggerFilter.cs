@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
-using System.Net;
 using ReadyApi.Common.Exceptions;
 using ReadyApi.Common.Exceptions.CustomExceptions;
 using ReadyApi.Common.Exceptions.ProbDetails;
 
-namespace ReadyApi.Common.ExceptionFilter
+namespace ReadyApi.Common.ExceptionFilters
 {
     public class ExceptionLoggerFilter : IExceptionFilter
     {

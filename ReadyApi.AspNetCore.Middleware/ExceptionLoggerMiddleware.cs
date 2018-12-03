@@ -5,8 +5,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using ReadyApi.Common.Exceptions;
+using ReadyApi.Common.Exceptions.CustomExceptions;
+using ReadyApi.Common.Exceptions.ProbDetails;
 
-namespace ReadyApi.AspCore.Middlewares
+namespace ReadyApi.AspNetCore.Middleware
 {
     public class ExceptionLoggerMiddleware
     {
@@ -40,14 +43,39 @@ namespace ReadyApi.AspCore.Middlewares
                                  $"Request = {requestAsString}{Environment.NewLine}" +
                                  $"Exception = {ex}";
 
-                _logger.Log(_middlewareOptions.LogLevel, message);
+                LogLevel logLevel = DecideLogLevel(ex);
+                _logger.Log(logLevel, new EventId((int) logLevel, ex.GetType().FullName), typeof(ExceptionLoggerMiddleware), ex, (type, exception) => message);
 
-                if (httpContext.Response.HasStarted)
-                    return;
-
-                httpContext.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
-                await httpContext.Response.WriteAsync(ex.Message);
+                throw;
             }
+        }
+
+        private LogLevel DecideLogLevel(Exception exception)
+        {
+            LogLevel logLevel = _middlewareOptions.LogLevel;
+
+
+            if (exception is CustomException customException)
+            {
+                if (customException.ProblemDetail is ApiProblemDetails apiProblemDetails)
+                {
+                    if ((int) apiProblemDetails.StatusCode < (int) HttpStatusCode.BadRequest)
+                    {
+                        logLevel = LogLevel.Information;
+                    }
+                    else if ((int) apiProblemDetails.StatusCode < (int) HttpStatusCode.InternalServerError)
+                    {
+                        logLevel = LogLevel.Warning;
+                    }
+                }
+                else if (customException.ExceptionTags != null
+                         && customException.ExceptionTags.Contains(ExceptionTags.ClientsFault))
+                {
+                    logLevel = LogLevel.Warning;
+                }
+            }
+
+            return logLevel;
         }
     }
 
@@ -58,12 +86,6 @@ namespace ReadyApi.AspCore.Middlewares
 
     public static class ExceptionLoggerMiddlewareExtensions
     {
-        [Obsolete("UseExceptionLoggerMiddleware extension fuction should be used")]
-        public static void UseExceptionLogger(this IApplicationBuilder app, ILogger<ExceptionLoggerMiddleware> logger, ExceptionLoggerMiddlewareOptions exceptionLoggerMiddlewareOptions = null)
-        {
-            UseExceptionLoggerMiddleware(app, logger, exceptionLoggerMiddlewareOptions);
-        }
-
         public static void UseExceptionLoggerMiddleware(this IApplicationBuilder app, ILogger<ExceptionLoggerMiddleware> logger, ExceptionLoggerMiddlewareOptions exceptionLoggerMiddlewareOptions = null)
         {
             exceptionLoggerMiddlewareOptions = exceptionLoggerMiddlewareOptions ?? new ExceptionLoggerMiddlewareOptions();

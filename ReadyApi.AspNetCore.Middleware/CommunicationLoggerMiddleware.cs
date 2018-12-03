@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace ReadyApi.AspCore.Middlewares
+namespace ReadyApi.AspNetCore.Middleware
 {
     public class CommunicationLoggerMiddleware
     {
@@ -31,13 +31,16 @@ namespace ReadyApi.AspCore.Middlewares
             string requestAsString = await httpContext.Request.Stringfy();
             string message = $"[{nameof(CommunicationLoggerMiddleware)}] : {correlationId}{Environment.NewLine}" +
                              $"{requestAsString}";
-            _logger.Log(_options.LogLevel, message);
+
+            _logger.Log(_options.LogLevel, new EventId((int) _options.LogLevel), typeof(CommunicationLoggerMiddleware), null, (type, exception) => message);
 
             httpContext.Response.OnCompleted(() =>
                                              {
                                                  message = $"[{nameof(CommunicationLoggerMiddleware)}] : {correlationId}{Environment.NewLine}" +
                                                            $"{httpContext.Response.StatusCode})";
-                                                 _logger.Log(_options.LogLevel, message);
+
+                                                 _logger.Log(_options.LogLevel, new EventId((int)_options.LogLevel), typeof(CommunicationLoggerMiddleware), null, (type, exception) => message);
+
 
                                                  return Task.CompletedTask;
                                              });
@@ -52,12 +55,6 @@ namespace ReadyApi.AspCore.Middlewares
 
     public static class CommunicationLoggerMiddlewareExtensions
     {
-        [Obsolete("UseComminucationLoggerMiddleware should be used")]
-        public static void UseComminucationLogger(this IApplicationBuilder app, ILogger<CommunicationLoggerMiddleware> logger, CommunicationLoggerMiddlewareOptions communicationLoggerMiddlewareOptions = null)
-        {
-            UseComminucationLoggerMiddleware(app, logger, communicationLoggerMiddlewareOptions);
-        }
-
         public static void UseComminucationLoggerMiddleware(this IApplicationBuilder app, ILogger<CommunicationLoggerMiddleware> logger, CommunicationLoggerMiddlewareOptions communicationLoggerMiddlewareOptions = null)
         {
             communicationLoggerMiddlewareOptions = communicationLoggerMiddlewareOptions ?? new CommunicationLoggerMiddlewareOptions();

@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using ReadyApi.Common.Exceptions;
 using ReadyApi.Common.Exceptions.CustomExceptions;
 using ReadyApi.Common.Exceptions.ProbDetails;
 
-namespace ReadyApi.Common.ExceptionFiltersTests.Controllers
+namespace ReadyApi.AspNetCore.MiddlewareTests.Controllers
 {
     [Route("")]
     public class DummyController : Controller
     {
+        [Route("health-check")]
+        [HttpGet]
+        public IActionResult HealthCheck()
+        {
+            return StatusCode((int) HttpStatusCode.OK);
+        }
+
         [Route("system-ex")]
         [HttpGet]
         public void SystemException()
@@ -17,11 +23,11 @@ namespace ReadyApi.Common.ExceptionFiltersTests.Controllers
             throw new ApplicationException("dummy message cannot be seen by client");
         }
 
-        [Route("custom-ex-with-basic-prob/{exceptionTag}")]
+        [Route("custom-ex-with-basic-prob")]
         [HttpGet]
-        public void CustomExceptionWithBasicProblemDetails(ExceptionTags exceptionTag)
+        public void CustomExceptionWithBasicProblemDetails()
         {
-            throw new CustomException(new BasicProblemDetails("Test Title"), exceptionTag);
+            throw new CustomException(new BasicProblemDetails("Test Title"));
         }
 
         [Route("custom-ex-with-api-prob/{httpStatus}")]

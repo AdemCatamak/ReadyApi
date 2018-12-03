@@ -3,7 +3,7 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace ReadyApi.AspCore.Controllers
+namespace ReadyApi.AspNetCore.Controllers
 {
     [Route("")]
     public class DefaultController : Controller

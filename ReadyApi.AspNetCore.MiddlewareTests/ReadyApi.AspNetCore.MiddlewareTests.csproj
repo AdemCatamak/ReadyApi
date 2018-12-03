@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ReadyApi.Common.ExceptionFilters\ReadyApi.Common.ExceptionFilters.csproj" />
+    <ProjectReference Include="..\ReadyApi.AspNetCore.Middleware\ReadyApi.AspNetCore.Middleware.csproj" />
     <ProjectReference Include="..\ReadyApi.Common.Exceptions\ReadyApi.Common.Exceptions.csproj" />
   </ItemGroup>
 
@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />

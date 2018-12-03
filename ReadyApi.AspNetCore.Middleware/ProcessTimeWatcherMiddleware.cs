@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace ReadyApi.AspCore.Middlewares
+namespace ReadyApi.AspNetCore.Middleware
 {
     public class ProcessTimeWatcherMiddleware
     {
@@ -39,7 +39,8 @@ namespace ReadyApi.AspCore.Middlewares
             finally
             {
                 watch.Stop();
-                _logger.Log(_options.LogLevel, $"[{nameof(ProcessTimeWatcherMiddleware)}] : [{endpointName}] - [{correlationId}] - {watch.ElapsedMilliseconds} Ms");
+                string message = $"[{nameof(ProcessTimeWatcherMiddleware)}] : [{endpointName}] - [{correlationId}] - {watch.ElapsedMilliseconds} Ms";
+                _logger.Log(_options.LogLevel, new EventId((int) _options.LogLevel), typeof(ProcessTimeWatcherMiddleware), null, (type, exception) => message);
             }
         }
     }

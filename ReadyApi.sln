@@ -11,17 +11,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		NuGet.config = NuGet.config
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspCore", "AspCore", "{6C3000E7-85E9-4ED8-8EEC-BFA440F1C627}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.AspCore.Controllers", "ReadyApi.AspCore.Controllers\ReadyApi.AspCore.Controllers.csproj", "{1C14A170-1647-4D13-A6B8-47D0D66EC97A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.AspCore.Middlewares", "ReadyApi.AspCore.Middlewares\ReadyApi.AspCore.Middlewares.csproj", "{4D490805-C0B2-46BB-972C-7E9A4CD0C82E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspNetCore", "AspNetCore", "{6C3000E7-85E9-4ED8-8EEC-BFA440F1C627}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.Common.Exceptions", "ReadyApi.Common.Exceptions\ReadyApi.Common.Exceptions.csproj", "{5C95BEDB-C959-420F-8F8B-876A015E9292}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.Common.ExceptionFilters", "ReadyApi.Common.ExceptionFilters\ReadyApi.Common.ExceptionFilters.csproj", "{ED38ED36-9469-47EF-A5A3-22B5E24A94AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadyApi.Common.ExceptionFiltersTests", "ReadyApi.Common.ExceptionFiltersTests\ReadyApi.Common.ExceptionFiltersTests.csproj", "{CBED303E-095C-4456-A774-09CE710FFB04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.Common.ExceptionFiltersTests", "ReadyApi.Common.ExceptionFiltersTests\ReadyApi.Common.ExceptionFiltersTests.csproj", "{CBED303E-095C-4456-A774-09CE710FFB04}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.AspNetCore.BasicAuth", "ReadyApi.AspNetCore.BasicAuth\ReadyApi.AspNetCore.BasicAuth.csproj", "{BF10CEB1-A060-4203-84DB-59A555525AE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.AspNetCore.Controllers", "ReadyApi.AspNetCore.Controllers\ReadyApi.AspNetCore.Controllers.csproj", "{A846268B-B010-4B1B-BBE4-09DC8C71FFD2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.AspNetCore.BasicAuthTests", "ReadyApi.AspNetCore.BasicAuthTests\ReadyApi.AspNetCore.BasicAuthTests.csproj", "{837B4370-0DC8-4869-AA2A-C0DDE0C57775}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.AspNetCore.ControllersTests", "ReadyApi.AspNetCore.ControllersTests\ReadyApi.AspNetCore.ControllersTests.csproj", "{E0D738A5-2288-4460-B3A6-FCC9B45E4737}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.AspNetCore.Middleware", "ReadyApi.AspNetCore.Middleware\ReadyApi.AspNetCore.Middleware.csproj", "{39292B9B-785E-4B4A-BEA0-ABE42B17F908}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.AspNetCore.MiddlewareTests", "ReadyApi.AspNetCore.MiddlewareTests\ReadyApi.AspNetCore.MiddlewareTests.csproj", "{BE1A4C56-9052-4ECE-A649-ED5CFA2FAFBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,14 +41,6 @@ Global
 		{B1CC65D3-A79B-46A6-B9B4-FA90E6FA6487}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1CC65D3-A79B-46A6-B9B4-FA90E6FA6487}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1CC65D3-A79B-46A6-B9B4-FA90E6FA6487}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C14A170-1647-4D13-A6B8-47D0D66EC97A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C14A170-1647-4D13-A6B8-47D0D66EC97A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C14A170-1647-4D13-A6B8-47D0D66EC97A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C14A170-1647-4D13-A6B8-47D0D66EC97A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D490805-C0B2-46BB-972C-7E9A4CD0C82E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D490805-C0B2-46BB-972C-7E9A4CD0C82E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D490805-C0B2-46BB-972C-7E9A4CD0C82E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D490805-C0B2-46BB-972C-7E9A4CD0C82E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5C95BEDB-C959-420F-8F8B-876A015E9292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5C95BEDB-C959-420F-8F8B-876A015E9292}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C95BEDB-C959-420F-8F8B-876A015E9292}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,13 +53,41 @@ Global
 		{CBED303E-095C-4456-A774-09CE710FFB04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBED303E-095C-4456-A774-09CE710FFB04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBED303E-095C-4456-A774-09CE710FFB04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF10CEB1-A060-4203-84DB-59A555525AE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF10CEB1-A060-4203-84DB-59A555525AE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF10CEB1-A060-4203-84DB-59A555525AE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF10CEB1-A060-4203-84DB-59A555525AE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A846268B-B010-4B1B-BBE4-09DC8C71FFD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A846268B-B010-4B1B-BBE4-09DC8C71FFD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A846268B-B010-4B1B-BBE4-09DC8C71FFD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A846268B-B010-4B1B-BBE4-09DC8C71FFD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{837B4370-0DC8-4869-AA2A-C0DDE0C57775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{837B4370-0DC8-4869-AA2A-C0DDE0C57775}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{837B4370-0DC8-4869-AA2A-C0DDE0C57775}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{837B4370-0DC8-4869-AA2A-C0DDE0C57775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0D738A5-2288-4460-B3A6-FCC9B45E4737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0D738A5-2288-4460-B3A6-FCC9B45E4737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0D738A5-2288-4460-B3A6-FCC9B45E4737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0D738A5-2288-4460-B3A6-FCC9B45E4737}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39292B9B-785E-4B4A-BEA0-ABE42B17F908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39292B9B-785E-4B4A-BEA0-ABE42B17F908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39292B9B-785E-4B4A-BEA0-ABE42B17F908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39292B9B-785E-4B4A-BEA0-ABE42B17F908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE1A4C56-9052-4ECE-A649-ED5CFA2FAFBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE1A4C56-9052-4ECE-A649-ED5CFA2FAFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE1A4C56-9052-4ECE-A649-ED5CFA2FAFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE1A4C56-9052-4ECE-A649-ED5CFA2FAFBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1C14A170-1647-4D13-A6B8-47D0D66EC97A} = {6C3000E7-85E9-4ED8-8EEC-BFA440F1C627}
-		{4D490805-C0B2-46BB-972C-7E9A4CD0C82E} = {6C3000E7-85E9-4ED8-8EEC-BFA440F1C627}
+		{BF10CEB1-A060-4203-84DB-59A555525AE8} = {6C3000E7-85E9-4ED8-8EEC-BFA440F1C627}
+		{A846268B-B010-4B1B-BBE4-09DC8C71FFD2} = {6C3000E7-85E9-4ED8-8EEC-BFA440F1C627}
+		{837B4370-0DC8-4869-AA2A-C0DDE0C57775} = {6C3000E7-85E9-4ED8-8EEC-BFA440F1C627}
+		{E0D738A5-2288-4460-B3A6-FCC9B45E4737} = {6C3000E7-85E9-4ED8-8EEC-BFA440F1C627}
+		{39292B9B-785E-4B4A-BEA0-ABE42B17F908} = {6C3000E7-85E9-4ED8-8EEC-BFA440F1C627}
+		{BE1A4C56-9052-4ECE-A649-ED5CFA2FAFBD} = {6C3000E7-85E9-4ED8-8EEC-BFA440F1C627}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2143C8CE-D2BD-43F5-969D-10854B4D160F}

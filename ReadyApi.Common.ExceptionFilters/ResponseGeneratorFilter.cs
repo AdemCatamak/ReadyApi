@@ -5,13 +5,13 @@ using ReadyApi.Common.Exceptions.CustomExceptions;
 using ReadyApi.Common.Exceptions.ProbDetails;
 using ReadyApi.Common.Model;
 
-namespace ReadyApi.Common.ExceptionFilter
+namespace ReadyApi.Common.ExceptionFilters
 {
-    public class GlobalExceptionFilter : IExceptionFilter
+    public class ResponseGeneratorFilter : IExceptionFilter
     {
         private readonly BasicErrorResponse _basicErrorResponse;
 
-        public GlobalExceptionFilter(BasicErrorResponse basicErrorResponse = null)
+        public ResponseGeneratorFilter(BasicErrorResponse basicErrorResponse = null)
         {
             _basicErrorResponse = basicErrorResponse ?? new BasicErrorResponse();
         }

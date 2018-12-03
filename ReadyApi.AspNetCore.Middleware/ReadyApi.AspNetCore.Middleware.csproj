@@ -8,9 +8,9 @@
     <Authors>Adem Catamak</Authors>
     <Company />
     <Product />
-    <PackageLicenseUrl>https://github.com/AdemCatamak/ReadyApi.Core/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/AdemCatamak/ReadyApi.Core</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/AdemCatamak/ReadyApi.Core</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/AdemCatamak/ReadyApi/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/AdemCatamak/ReadyApi</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AdemCatamak/ReadyApi</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

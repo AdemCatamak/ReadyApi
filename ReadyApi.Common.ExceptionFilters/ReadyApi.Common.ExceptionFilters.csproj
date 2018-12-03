@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/AdemCatamak/ReadyApi</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/AdemCatamak/ReadyApi/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/AdemCatamak/ReadyApi</RepositoryUrl>
+    <Authors>Adem Catamak</Authors>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReadyApi.Common.Exceptions\ReadyApi.Common.Exceptions.csproj" />
+    <ProjectReference Include="..\ReadyApi.Common.Model\ReadyApi.Common.Model.csproj" />
+  </ItemGroup>
+
+</Project>

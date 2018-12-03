@@ -1,0 +1,7 @@
+language: csharp
+dotnet: 2.0
+script:
+  - ./build.sh --nugetKey=$nugetKey --branchName=$TRAVIS_BRANCH
+
+notifications:
+  email: false

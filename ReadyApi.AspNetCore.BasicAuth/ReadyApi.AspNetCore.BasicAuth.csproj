@@ -6,9 +6,15 @@
     <RepositoryUrl>https://github.com/AdemCatamak/ReadyApi</RepositoryUrl>
     <Authors>Adem Catamak</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+<<<<<<< HEAD:ReadyApi.AspNetCore.BasicAuth/ReadyApi.AspNetCore.BasicAuth.csproj
     <Version>2.0.0</Version>
     <Description>Basic Authentication Middleware For Net Core</Description>
     <PackageProjectUrl>https://github.com/AdemCatamak/ReadyApi</PackageProjectUrl>
+=======
+    <Version>1.0.6</Version>
+    <Description>Project renamed as ReadyApi.AspNetCore.BasicAuth
+Basic Authentication Middleware For Net Core</Description>
+>>>>>>> master:ReadyApi.Core.BasicAuth/ReadyApi.Core.BasicAuth.csproj
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.0.4" />

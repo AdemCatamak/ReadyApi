@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using System.Security.Claims;
-using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;

@@ -108,7 +108,7 @@ Task(BuildStage)
 {
     DotNetCoreBuild(".", new DotNetCoreBuildSettings()
                         {
-                            Configuration = config,
+                            Configuration = BuildConfig,
                             ArgumentCustomization = args => args.Append("--no-restore"),
                         });
 });

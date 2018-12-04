@@ -14,7 +14,7 @@ string[] Projects = new string[]{
 string BranchName = Argument("branchName", "");
 string BuildConfig = Argument("buildType", "Release");
 string NugetApiKey = Argument("nugetKey", "");
-string NugetSourceUrl = Argument("nugetServer", "https://www.nuget.org/api/v2/package");
+string NugetSourceUrl = Argument("nugetServer", "https://api.nuget.org/v3/index.json");
 
 // VARIABLES
 

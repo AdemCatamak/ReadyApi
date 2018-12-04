@@ -1,10 +1,10 @@
 string[] Projects = new string[]{
-    "ReadyApi.AspNetCore.BasicAuth",
+    "ReadyApi.Common.Model",
+    "ReadyApi.Common.Exceptions",
     "ReadyApi.AspNetCore.Controllers",
+    "ReadyApi.AspNetCore.BasicAuth",
     "ReadyApi.AspNetCore.Middleware",
     "ReadyApi.Common.ExceptionFilters",
-    "ReadyApi.Common.Exceptions",
-    "ReadyApi.Common.Model"
 };
 
 // TOOLS

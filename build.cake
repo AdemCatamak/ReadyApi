@@ -1,3 +1,12 @@
+string[] Projects = new string[]{
+    "ReadyApi.AspNetCore.BasicAuth",
+    "ReadyApi.AspNetCore.Controllers",
+    "ReadyApi.AspNetCore.Middleware",
+    "ReadyApi.Common.ExceptionFilters",
+    "ReadyApi.Common.Exceptions",
+    "ReadyApi.Common.Model"
+};
+
 // TOOLS
 
 // ARGUMENTS
@@ -53,26 +62,30 @@ Task(PushStage)
 .IsDependentOn(PackageStage)
 .Does(()=>
 {
-    var npkgFiles = GetFiles("./**/*.nupkg");
-    Console.WriteLine("NUPKG Files");
-    foreach(var nupkgFile in npkgFiles)
+    foreach (var project in Projects)
     {
-        Console.WriteLine(nupkgFile);
-        var nugetPushSettings = new NuGetPushSettings
+        var npkgFiles = GetFiles($"./**/*{project}*.nupkg");
+        Console.WriteLine("NUPKG Files");
+        foreach(var nupkgFile in npkgFiles)
         {
-            ApiKey = NugetApiKey,
-            Source = NugetSourceUrl 
-        };
+            Console.WriteLine(nupkgFile);
+            var nugetPushSettings = new NuGetPushSettings
+            {
+                ApiKey = NugetApiKey,
+                Source = NugetSourceUrl 
+            };
         
-        NuGetPush(nupkgFile.FullPath, nugetPushSettings);        
+            NuGetPush(nupkgFile.FullPath, nugetPushSettings);
+        }
     }
+   
 });
 
 Task(PackageStage)
 .IsDependentOn(TestStage)
 .Does(()=>
 {
-    // packages are created during build
+    // packages created build stage
 });
 
 Task(TestStage)
@@ -93,36 +106,23 @@ Task(BuildStage)
 .IsDependentOn(NugetRestoreStage)
 .Does(()=>
 {
-    foreach (var sln in slnFiles)
-    {
-        MSBuild(sln, new MSBuildSettings
-        {
-            Verbosity = Verbosity.Minimal,
-            ToolVersion = MSBuildToolVersion.VS2017,
-            Configuration = BuildConfig,
-            PlatformTarget = PlatformTarget.MSIL
-        });
-    }
+    DotNetCoreBuild(".", new DotNetCoreBuildSettings()
+                        {
+                            Configuration = config,
+                            ArgumentCustomization = args => args.Append("--no-restore"),
+                        });
 });
 
 Task(NugetRestoreStage)
 .IsDependentOn(CleanStage)
 .Does(()=>
 {
-    foreach (var sln in slnFiles)
-    {
-        NuGetRestore(sln, new NuGetRestoreSettings
-        {
-            NoCache = true,
-            Verbosity = NuGetVerbosity.Detailed,
-            PackagesDirectory = NugetPackagePath
-        });
-    }
+    DotNetCoreRestore();
 });
 
 
 Task(CleanStage)
-.IsDependentOn(FindSlnStage)
+.IsDependentOn(CheckEnvVarStage)
 .Does(()=>
 {
     foreach (var directoryPath in RemovableDirectories)
@@ -143,25 +143,6 @@ Task(CleanStage)
         }
 
     }   
-});
-
-Task(FindSlnStage)
-.IsDependentOn(CheckEnvVarStage)
-.Does(()=>
-{
-    FilePathCollection solutionFiles = GetFiles("**/*.sln");
-    if(solutionFiles.Count == 0)
-    {
-        throw new Exception(".sln files cannot found");
-    }
-    
-    slnFiles = solutionFiles;
-
-    Console.WriteLine("SLN Files");
-    foreach(FilePath sln in slnFiles)
-    {
-        Console.WriteLine(sln.ToString());
-    }
 });
 
 Task(CheckEnvVarStage)

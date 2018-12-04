@@ -15,7 +15,7 @@ namespace ReadyApi.AspNetCore.MiddlewareTests
 {
     public class ExceptionLoggerMiddlewareTest : IDisposable
     {
-        private const string BASE_URL = "http://localhost:5009";
+        private const string BASE_URL = "http://localhost:5012";
         private readonly IWebHost _webHost;
         private readonly Mock<ILogger<ExceptionLoggerMiddleware>> _loggerMock;
 

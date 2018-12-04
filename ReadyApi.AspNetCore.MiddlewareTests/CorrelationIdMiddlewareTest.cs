@@ -13,7 +13,7 @@ namespace ReadyApi.AspNetCore.MiddlewareTests
 {
     public class CorrelationIdMiddlewareTest : IDisposable
     {
-        private const string BASE_URL = "http://localhost:5009";
+        private const string BASE_URL = "http://localhost:5011";
         private readonly IWebHost _webHost;
 
         public CorrelationIdMiddlewareTest()

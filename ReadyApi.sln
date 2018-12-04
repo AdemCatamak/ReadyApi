@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadyApi.Common.Model", "Re
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{35EC0580-AD84-49E7-AB7F-840EAF72FFED}"
 	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+		build.cake = build.cake
+		build.ps1 = build.ps1
+		build.sh = build.sh
 		LICENSE = LICENSE
 		NuGet.config = NuGet.config
 	EndProjectSection

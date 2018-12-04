@@ -15,7 +15,7 @@ namespace ReadyApi.AspNetCore.MiddlewareTests
 {
     public class ProcessTimeWatcherMiddlewareTest : IDisposable
     {
-        private const string BASE_URL = "http://localhost:5009";
+        private const string BASE_URL = "http://localhost:5013";
         private readonly IWebHost _webHost;
         private readonly Mock<ILogger<ProcessTimeWatcherMiddleware>> _loggerMock;
 

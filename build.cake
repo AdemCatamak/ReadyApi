@@ -9,6 +9,8 @@ string[] Projects = new string[]{
 
 // TOOLS
 
+// ADDIN
+
 // ARGUMENTS
 
 string BranchName = Argument("branchName", "");
@@ -65,17 +67,11 @@ Task(PushStage)
     foreach (var project in Projects)
     {
         var npkgFiles = GetFiles($"./**/Release/*{project}*.nupkg");
-        Console.WriteLine("NUPKG Files");
         foreach(var nupkgFile in npkgFiles)
         {
+            Console.WriteLine();
             Console.WriteLine(nupkgFile);
-            var nugetPushSettings = new NuGetPushSettings
-            {
-                ApiKey = NugetApiKey,
-                Source = NugetSourceUrl 
-            };
-        
-            NuGetPush(nupkgFile.FullPath, nugetPushSettings);
+            PublishPackage(project, nupkgFile, NugetSourceUrl, NugetApiKey);  
         }
     }
    
@@ -159,5 +155,36 @@ Task(CheckEnvVarStage)
         throw new Exception("Nuget Api Key should be provided");
     }
 });
+
+private void PublishPackage (string packageId, FilePath packagePath, string nugetSourceUrl, string apiKey)
+{
+    if(IsNuGetPublished(packageId, packagePath, nugetSourceUrl))
+    {
+        Console.WriteLine($"{packageId} is already published. Hence this package will be skipped");
+        return;
+    }
+    
+    var nugetPushSettings = new NuGetPushSettings
+    {
+        ApiKey = apiKey,
+        Source = nugetSourceUrl 
+    };
+    
+    NuGetPush(packagePath.FullPath, nugetPushSettings);  
+}
+
+private bool IsNuGetPublished(string packageId, FilePath packagePath, string nugetSourceUrl) {
+    string packageNameWithVersion = packagePath.GetFilename().ToString().Replace(".nupkg", "");
+    var latestPublishedVersions = NuGetList(
+        packageId,
+        new NuGetListSettings 
+        {
+            Prerelease = true,
+            Source = new string[]{nugetSourceUrl}
+        }
+    );
+
+    return latestPublishedVersions.Any(p => packageNameWithVersion.EndsWith(p.Version));
+}
 
 RunTarget(target);

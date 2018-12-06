@@ -4,7 +4,7 @@
 ![AppVeyor](https://img.shields.io/appveyor/ci/ademcatamak/readyapi.svg) ![AppVeyor tests](https://img.shields.io/appveyor/tests/ademcatamak/readyapi.svg)
 
 **Travis**
-![Travis (.com)](https://img.shields.io/travis/com/AdemCatamak/ReadyApi.svg)
+![Travis (.com)](https://img.shields.io/travis/AdemCatamak/ReadyApi.svg)
 
 **Nuget Versions**
 

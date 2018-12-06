@@ -16,4 +16,6 @@ ReadyApi.AspNetCore.Middleware : ![Nuget](https://img.shields.io/nuget/v/ReadyAp
 
 ReadyApi.Common.ExceptionFilters : ![Nuget](https://img.shields.io/nuget/v/ReadyApi.Common.ExceptionFilters.svg)
 
+ReadyApi.Common.Exceptions : ![Nuget](https://img.shields.io/nuget/v/ReadyApi.Common.Exceptions.svg)
+
 ReadyApi.Common.Model : ![Nuget](https://img.shields.io/nuget/v/ReadyApi.Common.Model.svg)

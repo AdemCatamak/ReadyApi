@@ -66,7 +66,7 @@ Task(PushStage)
 {
     foreach (var project in Projects)
     {
-        var npkgFiles = GetFiles($"./**/Release/*{project}*.nupkg");
+        var npkgFiles = GetFiles($"./**/{project}/bin/Release/*.nupkg");
         foreach(var nupkgFile in npkgFiles)
         {
             Console.WriteLine();

@@ -26,7 +26,9 @@ namespace ReadyApi.AspNetCore.Middleware
             }
             else
             {
-                context.TraceIdentifier = Guid.NewGuid().ToString();
+                string guid = Guid.NewGuid().ToString();
+                DateTime requestTime = DateTime.UtcNow;
+                context.TraceIdentifier = $"{requestTime:yyyy-MM-dd-HH-mm}:{guid}";
             }
 
             context.Response.OnStarting(() =>

@@ -46,7 +46,7 @@ namespace ReadyApi.AspNetCore.MiddlewareTests
         }
 
         [Fact]
-        public async Task SystemEx_Test()
+        public async Task IfExceptionOccurs_ExceptionWillBeLogged()
         {
             using (var client = new HttpClient())
             {
@@ -65,65 +65,15 @@ namespace ReadyApi.AspNetCore.MiddlewareTests
             }
         }
 
-        [Theory]
-        [InlineData(200)]
-        [InlineData(304)]
-        public async Task CustomEx_Test_InfoLevelLog(int httpStatus)
+        [Fact]
+        public async Task IfExceptionDoesNotOccurs_NothingIsLogged()
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(BASE_URL);
-                HttpResponseMessage result = await client.GetAsync($"custom-ex-with-api-prob/{httpStatus}");
-                await result.Content.ReadAsStringAsync();
 
-                Assert.Equal(HttpStatusCode.InternalServerError, result.StatusCode);
-
-                _loggerMock.Verify(logger => logger.Log(LogLevel.Information,
-                                                        It.IsAny<EventId>(),
-                                                        It.IsAny<Type>(),
-                                                        It.IsAny<Exception>(),
-                                                        It.IsAny<Func<Type, Exception, string>>()
-                                                       ),
-                                   Times.Once);
-            }
-        }
-
-
-        [Theory]
-        [InlineData(401)]
-        [InlineData(410)]
-        public async Task CustomEx_Test_WarningLevelLog(int httpStatus)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(BASE_URL);
-                HttpResponseMessage result = await client.GetAsync($"custom-ex-with-api-prob/{httpStatus}");
-                await result.Content.ReadAsStringAsync();
-
-                Assert.Equal(HttpStatusCode.InternalServerError, result.StatusCode);
-
-                _loggerMock.Verify(logger => logger.Log(LogLevel.Warning,
-                                                        It.IsAny<EventId>(),
-                                                        It.IsAny<Type>(),
-                                                        It.IsAny<Exception>(),
-                                                        It.IsAny<Func<Type, Exception, string>>()
-                                                       ),
-                                   Times.Once);
-            }
-        }
-
-        [Theory]
-        [InlineData(500)]
-        [InlineData(511)]
-        public async Task CustomEx_Test_ErrorLevelLog(int httpStatus)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(BASE_URL);
-                HttpResponseMessage result = await client.GetAsync($"custom-ex-with-api-prob/{httpStatus}");
-                await result.Content.ReadAsStringAsync();
-
-                Assert.Equal(HttpStatusCode.InternalServerError, result.StatusCode);
+                HttpResponseMessage result = await client.GetAsync("health-check");
+                Assert.Equal(HttpStatusCode.OK, result.StatusCode);
 
                 _loggerMock.Verify(logger => logger.Log(LogLevel.Error,
                                                         It.IsAny<EventId>(),
@@ -131,10 +81,9 @@ namespace ReadyApi.AspNetCore.MiddlewareTests
                                                         It.IsAny<Exception>(),
                                                         It.IsAny<Func<Type, Exception, string>>()
                                                        ),
-                                   Times.Once);
+                                   Times.Never);
             }
         }
-
 
         public void Dispose()
         {

@@ -52,7 +52,10 @@ namespace ReadyApi.AspNetCore.MiddlewareTests
                 result = await client.GetAsync("/health-check");
             }
 
-            Assert.NotEmpty(result.Headers.GetValues(CorrelationIdMiddlewareOptions.DEFAULT_HEADER));
+            string correlationId = result.Headers.GetValues(CorrelationIdMiddlewareOptions.DEFAULT_HEADER).FirstOrDefault();
+            Assert.NotNull(correlationId);
+            Assert.NotEmpty(correlationId);
+            Assert.Contains(":", correlationId);
         }
 
         [Fact]

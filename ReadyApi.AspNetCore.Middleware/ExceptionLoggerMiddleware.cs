@@ -37,7 +37,7 @@ namespace ReadyApi.AspNetCore.Middleware
             {
                 string correlationId = _getCorrelationId(httpContext);
                 string requestAsString = await httpContext.Request.Stringfy();
-                string message = $"[{nameof(ExceptionLoggerMiddleware)}] - {correlationId}{Environment.NewLine}" +
+                string message = $"[{nameof(ExceptionLoggerMiddleware)}] - [traceId:{correlationId}]{Environment.NewLine}" +
                                  $"Request = {requestAsString}{Environment.NewLine}" +
                                  $"Exception = {ex}";
 

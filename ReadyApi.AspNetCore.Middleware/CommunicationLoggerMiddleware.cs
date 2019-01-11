@@ -29,14 +29,14 @@ namespace ReadyApi.AspNetCore.Middleware
         {
             string correlationId = GetCorrelationId(httpContext);
             string requestAsString = await httpContext.Request.Stringfy();
-            string message = $"[{nameof(CommunicationLoggerMiddleware)}] : {correlationId}{Environment.NewLine}" +
+            string message = $"[{nameof(CommunicationLoggerMiddleware)}] : [traceId:{correlationId}]{Environment.NewLine}" +
                              $"{requestAsString}";
 
             _logger.Log(_options.LogLevel, new EventId((int) _options.LogLevel), typeof(CommunicationLoggerMiddleware), null, (type, exception) => message);
 
             httpContext.Response.OnCompleted(() =>
                                              {
-                                                 message = $"[{nameof(CommunicationLoggerMiddleware)}] : {correlationId}{Environment.NewLine}" +
+                                                 message = $"[{nameof(CommunicationLoggerMiddleware)}] : [traceId:{correlationId}]{Environment.NewLine}" +
                                                            $"{httpContext.Response.StatusCode})";
 
                                                  _logger.Log(_options.LogLevel, new EventId((int)_options.LogLevel), typeof(CommunicationLoggerMiddleware), null, (type, exception) => message);

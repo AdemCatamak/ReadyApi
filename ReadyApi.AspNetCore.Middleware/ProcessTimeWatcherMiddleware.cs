@@ -44,7 +44,7 @@ namespace ReadyApi.AspNetCore.Middleware
             finally
             {
                 watch.Stop();
-                string message = $"[{nameof(ProcessTimeWatcherMiddleware)}] : [{verb}] - [{endpointName}] - [{correlationId}] - {watch.ElapsedMilliseconds} Ms";
+                string message = $"[{nameof(ProcessTimeWatcherMiddleware)}] : [{verb}] - [{endpointName}] - [traceId:{correlationId}] - {watch.ElapsedMilliseconds} Ms";
                 _logger.Log(_options.LogLevel, new EventId((int) _options.LogLevel), typeof(ProcessTimeWatcherMiddleware), null, (type, exception) => message);
             }
         }

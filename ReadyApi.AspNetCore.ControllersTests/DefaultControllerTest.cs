@@ -14,11 +14,11 @@ namespace ReadyApi.AspNetCore.ControllersTests
     {
         private const string BASE_URL = "http://localhost:50001";
 
-        private readonly IWebHost _webhost;
+        private readonly IWebHost _webHost;
 
         public DefaultControllerTest()
         {
-            _webhost = WebHost.CreateDefaultBuilder(null)
+            _webHost = WebHost.CreateDefaultBuilder(null)
                               .ConfigureServices(services =>
                                                  {
                                                      services.AddCors();
@@ -34,7 +34,7 @@ namespace ReadyApi.AspNetCore.ControllersTests
                               .UseUrls(BASE_URL)
                               .Build();
 
-            _webhost.Start();
+            _webHost.Start();
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace ReadyApi.AspNetCore.ControllersTests
 
         public void Dispose()
         {
-            _webhost?.Dispose();
+            _webHost?.Dispose();
         }
     }
 }
